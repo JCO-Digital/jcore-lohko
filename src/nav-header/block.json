@@ -5,11 +5,23 @@
   "version": "0.1.0",
   "title": "JCORE Navigation Header",
   "category": "navigation",
-  "icon": "groups",
+  "icon": "block-default",
   "description": "A wrapper block for navigation.",
+  "attributes": {
+    "scroll": {
+      "type": "boolean",
+      "default": false
+    },
+    "sticky": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "example": {},
   "supports": {
     "html": false,
+    "layout": true,
+    "align": ["wide", "full"],
     "background": {
       "backgroundImage": true,
       "backgroundSize": true
@@ -22,6 +34,5 @@
   "textdomain": "jcore",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css",
-  "viewScript": "file:./view.js"
+  "style": "file:./style-index.css"
 }

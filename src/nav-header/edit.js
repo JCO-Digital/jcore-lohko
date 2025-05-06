@@ -1,24 +1,11 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from "@wordpress/i18n";
+import {
+  useBlockProps,
+  InspectorControls,
+  InnerBlocks,
+} from "@wordpress/block-editor";
+import { PanelBody, ToggleControl } from "@wordpress/components";
 
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-import { useBlockProps, InnerBlocks } from "@wordpress/block-editor";
-
-/**
- * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
- * Those files can contain any CSS code that gets applied to the editor.
- *
- * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
- */
 import "./editor.css";
 
 /**
@@ -29,10 +16,33 @@ import "./editor.css";
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit({ attributes, setAttributes }) {
+  const { scroll, sticky } = attributes;
+
   return (
-    <header {...useBlockProps()}>
-      <InnerBlocks />
-    </header>
+    <>
+      <InspectorControls>
+        <PanelBody title={__("Settings")}>
+          <ToggleControl
+            __nextHasNoMarginBottom
+            label={__("Scroll classes")}
+            help={__("Set jutils scroll classes on scroll.")}
+            checked={scroll}
+            onChange={(newValue) => setAttributes({ scroll: newValue })}
+          />
+          <ToggleControl
+            __nextHasNoMarginBottom
+            label={__("Sticky")}
+            help={__("Set jutils sticky.")}
+            checked={sticky}
+            onChange={(newValue) => setAttributes({ sticky: newValue })}
+          />
+        </PanelBody>
+      </InspectorControls>
+
+      <header {...useBlockProps()} data-jscroll={scroll} data-jsticky={sticky}>
+        <InnerBlocks />
+      </header>
+    </>
   );
 }

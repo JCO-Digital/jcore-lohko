@@ -1,18 +1,12 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "jcore/example-dynamic",
+  "name": "jcore/static",
   "version": "0.1.0",
-  "title": "Example Dynamic",
+  "title": "Static",
   "category": "widgets",
   "icon": "text-page",
-  "description": "Example block to use as base.",
-  "attributes": {
-    "content": {
-      "type": "string",
-      "default": "test"
-    }
-  },
+  "description": "Dynamic block template.",
   "example": {},
   "supports": {
     "html": false,
@@ -30,6 +24,5 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "render": "file:./render.php",
   "viewScript": "file:./view.js"
 }

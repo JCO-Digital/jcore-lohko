@@ -10,9 +10,14 @@ import { InnerBlocks } from "@wordpress/block-editor";
  *
  * @return {Element} Element to render.
  */
-export default function save() {
+export default function save({ attributes }) {
+  const { scroll, sticky } = attributes;
   return (
-    <header {...useBlockProps.save()} data-jscroll data-jsticky>
+    <header
+      {...useBlockProps.save()}
+      data-jscroll={scroll}
+      data-jsticky={sticky}
+    >
       <InnerBlocks.Content />
     </header>
   );
