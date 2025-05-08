@@ -1,0 +1,10 @@
+<div id="copyright-date" {{ wrapper_attributes }}>
+	<p>©
+		{{ companyName }}
+		{% if showStartingYear == 1 %}
+			{{ startingYear}}
+			-
+		{% endif %}
+		{{ currentYear }}
+	</p>
+</div>
