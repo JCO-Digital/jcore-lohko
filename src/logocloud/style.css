@@ -1,0 +1,26 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-jcore-logocloud {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+  gap: 10px; 
+  figure {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    img {
+      flex: 0 0 calc(12.5% - 10px);
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
