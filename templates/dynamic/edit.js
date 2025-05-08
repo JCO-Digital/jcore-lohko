@@ -1,5 +1,6 @@
 import { __ } from "@wordpress/i18n";
-import { useBlockProps } from "@wordpress/block-editor";
+import { InspectorControls, useBlockProps } from "@wordpress/block-editor";
+import { PanelBody, TextControl } from "@wordpress/components";
 import ServerSideRender from "@wordpress/server-side-render";
 import "./editor.css";
 
@@ -9,13 +10,25 @@ import "./editor.css";
  *
  * @return {Element} Element to render.
  */
-export default function Edit(attributes) {
+export default function Edit({ attributes, setAttributes }) {
   return (
-    <div {...useBlockProps()}>
-      <ServerSideRender
-        block="jcore/example-dynamic"
-        attributes={{ ...attributes, preview: true }}
-      />
-    </div>
+    <>
+      <InspectorControls>
+        <PanelBody title={__("Settings")}>
+          <TextControl
+            label="Test"
+            value={attributes.test}
+            onChange={(newValue) => setAttributes({ test: newValue })}
+          />
+        </PanelBody>
+      </InspectorControls>
+
+      <div {...useBlockProps()}>
+        <ServerSideRender
+          block="jcore/dynamic"
+          attributes={{ ...attributes, preview: true }}
+        />
+      </div>
+    </>
   );
 }

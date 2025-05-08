@@ -7,6 +7,12 @@
   "category": "widgets",
   "icon": "text-page",
   "description": "Dynamic block template.",
+  "attributes": {
+    "test": {
+      "type": "string",
+      "default": "test"
+    }
+  },
   "example": {},
   "supports": {
     "html": false,

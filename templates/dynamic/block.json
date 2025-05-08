@@ -8,7 +8,7 @@
   "icon": "text-page",
   "description": "Dynamic block template.",
   "attributes": {
-    "content": {
+    "test": {
       "type": "string",
       "default": "test"
     }
