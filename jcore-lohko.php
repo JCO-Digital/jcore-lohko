@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       JCORE Lohko
  * Description:       Template for default blocks used in JCORE 3.
- * Version: 0.2.1
+ * Version: 0.2.2
  * Requires at least: 6.7
  * Requires PHP:      8.2
  * Author:            J&Co Digital
