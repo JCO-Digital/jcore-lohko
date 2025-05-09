@@ -17,7 +17,6 @@
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
-    "@wordpress/prettier-config": "^4.22.0",
     "@wordpress/scripts": "^30.15.0"
   }
 }
