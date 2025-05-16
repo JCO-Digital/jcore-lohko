@@ -1,0 +1,42 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-jcore-accordion-item {
+	.accordion-item__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		.accordion-item__toggle {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 2rem;
+			height: 2rem;
+			border-radius: 50%;
+			border: 0;
+			background-color: #000;
+			color: #fff;
+			cursor: pointer;
+		}
+		.accordion-item__toggle-icon::before {
+			font-family: "Font Awesome 6 Free";
+			content: "\f067";
+		}
+	}
+	.accordion-item__content {
+		overflow: hidden;
+		display: none;
+	}
+	&.active {
+		.accordion-item__toggle-icon::before {
+			content: "\f068";
+		}
+		.accordion-item__content {
+			display: block;
+		}
+	}
+}

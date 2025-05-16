@@ -1,0 +1,41 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-jcore-accordion-item {
+	.accordion-item__header {
+		border: 2px dashed var(--wp--preset--color--warning);
+		padding: 2rem 1rem 1rem;
+		position: relative;
+		&::before {
+			content: "Accordion Header";
+			display: block;
+			font-size: 1rem;
+			font-weight: 600;
+			color: var(--wp--preset--color--white);
+			background-color: var(--wp--preset--color--warning);
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+	.accordion-item__content {
+		border: 2px dashed var(--wp--preset--color--success);
+		padding: 2rem 1rem 1rem;
+		position: relative;
+		display: block !important;
+		&::before {
+			content: "Accordion Content";
+			display: block;
+			font-size: 1rem;
+			font-weight: 600;
+			color: var(--wp--preset--color--white);
+			background-color: var(--wp--preset--color--success);
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	}
+}
