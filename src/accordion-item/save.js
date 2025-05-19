@@ -4,7 +4,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { useBlockProps, InnerBlocks, RichText } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -21,24 +21,33 @@ export default function save({ attributes }) {
 			{...useBlockProps.save({
 				id: `accordion-${attributes.id}`,
 				'data-accordion-id': attributes.id,
-				'data-wp-bind--aria-expanded': 'state.isActive',
 				'data-wp-class--active': 'state.isActive',
 			})}
 		>
-			<div
-				className="accordion-item__header"
-				data-wp-on-async--click="actions.openAccordion"
-				aria-controls={`accordion-item-${attributes.id}`}
-			>
-				<h3 className="accordion-item__title">{attributes.title}</h3>
-				<button className="accordion-item__toggle">
-					<span className="accordion-item__toggle-icon"></span>
-					<span className="screen-reader-text">Toggle</span>
+			<h3 className="accordion-item__header-wrapper">
+				<button
+					id={`accordion-toggle-${attributes.id}`}
+					className="accordion-item__header"
+					data-wp-bind--aria-expanded="state.isActive"
+					data-wp-on-async--click="actions.openAccordion"
+					aria-controls={`accordion-item-${attributes.id}`}
+				>
+					<RichText.Content
+						tagName="span"
+						value={attributes.title}
+						className="accordion-item__title"
+					/>
+					<span className="accordion-item__toggle">
+						<span className="accordion-item__toggle-icon"></span>
+						<span className="screen-reader-text">Toggle</span>
+					</span>
 				</button>
-			</div>
+			</h3>
 			<div
 				id={`accordion-item-${attributes.id}`}
 				className="accordion-item__content"
+				role="region"
+				aria-labelledby={`accordion-toggle-${attributes.id}`}
 			>
 				<InnerBlocks.Content />
 			</div>

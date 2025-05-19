@@ -9,6 +9,7 @@
 		border: 2px dashed var(--wp--preset--color--warning);
 		padding: 2rem 1rem 1rem;
 		position: relative;
+		width: auto;
 		&::before {
 			content: "Accordion Header";
 			display: block;

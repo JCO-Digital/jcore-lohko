@@ -10,6 +10,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
+		width: 100%;
 		.accordion-item__toggle {
 			display: flex;
 			align-items: center;
@@ -23,7 +24,7 @@
 			cursor: pointer;
 		}
 		.accordion-item__toggle-icon::before {
-			font-family: "Font Awesome 6 Free";
+			font-family: "Font Awesome 6 Pro";
 			content: "\f067";
 		}
 	}
