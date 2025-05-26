@@ -1,0 +1,71 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-jcore-hero-carousel {
+    width: 100%;
+    max-width: 100dvw !important;
+    .content-container{
+        height: 100dvh;
+        display: flex;
+        > *{
+            display: flex;
+            flex-basis: 50%;
+        }
+        .image-wrapper{
+            .image-container{
+                display: grid;
+                position: relative;
+                .post-thumbnail{
+                    grid-area: 1 / 1;
+                    img{
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+        }
+        .slide-wrapper{
+            .slide-container{
+                display: flex;
+                padding-left: calc(2 * var(--wp--custom--spacing-sizes--xlarge));
+                padding-right: calc(2 * var(--wp--custom--spacing-sizes--xlarge));
+                justify-content: center;
+                flex-direction: column;
+                width: 100%;
+                .logo{
+                    margin-bottom: 3.875rem;
+                }
+                .swiper{
+                    .swiper-slide{
+                        margin-bottom: 3rem;
+                        .swiper-slide-content{
+                            .slide-index{
+                                color: var(--wp--preset--color--green);
+                                font-size: 1rem;
+                            }
+                            .post-title{
+                                margin-top: 8px;
+                                font-size: 26px;
+                                opacity: 0.5;
+                                margin-bottom: 1.25rem;
+                                transition: 0.3s ease-out all;
+                            }
+                            .post-link-wrapper{
+                                max-height: 0;
+                                overflow: hidden;
+                                transition: 0.3s ease-out all;
+                                .post-link{
+                                    pointer-events: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

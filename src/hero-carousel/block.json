@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "jcore/hero-carousel",
+  "version": "0.1.0",
+  "title": "Hero Carousel",
+  "category": "widgets",
+  "icon": "text-page",
+  "description": "Hero carousel that display latest posts",
+  "attributes": {
+    "displayLogo": {
+      "type": "boolean",
+      "default": true
+    },
+    "numberOfPosts": {
+      "type": "number",
+      "default": 3
+    },
+    "blockId": {
+      "type": "string"
+    }
+  },
+  "example": {},
+  "supports": {
+    "html": false,
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": true
+    },
+    "color": {
+      "background": true,
+      "text": true
+    }
+  },
+  "textdomain": "jcore",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php",
+  "viewScript": "file:./view.js"
+}
