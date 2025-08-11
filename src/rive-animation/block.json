@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jcore/rive-animation",
+	"version": "0.1.0",
+	"title": "Rive Animation",
+	"category": "widgets",
+	"icon": "superhero",
+	"description": "Insert Rive Animations",
+	"attributes": {
+		"riveFile": {
+			"type": "number"
+		},
+		"riveFileUrl": {
+			"type": "string",
+			"default": ""
+		},
+		"riveFileName": {
+			"type": "string"
+		},
+		"stateMachineName": {
+			"type": "string"
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false,
+		"align": [
+			"wide",
+			"full"
+		]
+	},
+	"textdomain": "jcore",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
