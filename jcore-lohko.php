@@ -87,3 +87,25 @@ function block_init() {
 	}
 }
 add_action( 'init', '\Jcore\Lohko\block_init' );
+
+/**
+ * Adds the Rive mime type to the allowed upload mime types.
+ * This allows Rive files to be uploaded to the media library.
+ *
+ * @param array $mimes Array of allowed mime types.
+ *
+ * @return array
+ */
+function add_rive_mime_type( $mimes ): array {
+	// Check if the 'jcore/rive-animation' block is registered.
+
+	if ( ! \WP_Block_Type_Registry::get_instance()->is_registered( 'jcore/rive-animation' ) ) {
+		// If the block is registered, add the Rive mime type.
+		return $mimes;
+	}
+
+	$mimes['riv'] = 'application/riv';
+
+	return $mimes;
+}
+add_filter( 'upload_mimes', 'Jcore\Lohko\add_rive_mime_type' );
