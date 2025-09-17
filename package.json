@@ -2,7 +2,7 @@
   "name": "lohko",
   "version": "0.5.0",
   "description": "Plugin with default block scaffolding for JCORE.",
-  "author": "J&Co Digital",
+  "author": "J&Co Digital <support@jco.fi>",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
   "scripts": {
@@ -15,7 +15,11 @@
     "start": "wp-scripts start --blocks-manifest",
     "watch": "concurrently -c green --names ' blocks' 'pnpm start'",
     "version": "node versionSync.mjs && git add -A",
-    "postversion": "git push && git push --tags"
+    "postversion": "git push && git push --tags",
+    "env:start": "pnpm dlx @wordpress/env start",
+    "env:stop": "pnpm dlx @wordpress/env stop",
+    "make-pot": "pnpm dlx @wp-blocks/make-pot@1.6.3 . languages/",
+    "make-json": "pnpm --package='@wp-blocks/make-pot@1.6.3' makejson build/ languages/"
   },
   "devDependencies": {
     "@wordpress/scripts": "^30.15.0",

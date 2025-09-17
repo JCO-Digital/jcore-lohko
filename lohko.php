@@ -10,6 +10,7 @@
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       lohko
+ * Domain Path:       /languages
  *
  * @package Jcore\Lohko
  */
@@ -109,3 +110,41 @@ function add_rive_mime_type( $mimes ): array {
 	return $mimes;
 }
 add_filter( 'upload_mimes', 'Jcore\Lohko\add_rive_mime_type' );
+
+/**
+ * Set the script translations.
+ *
+ * @return void
+ */
+function set_script_translations() {
+	$manifest_dir = __DIR__ . '/build';
+	if ( ! is_dir( $manifest_dir ) ) {
+		return;
+	}
+
+	$block_json_paths = glob( $manifest_dir . '/*/block.json' );
+	foreach ( $block_json_paths as $block_json_path ) {
+		if ( ! file_exists( $block_json_path ) ) {
+			continue;
+		}
+
+		$block_json = json_decode( file_get_contents( $block_json_path ), true ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+
+		if ( empty( $block_json ) || ! is_array( $block_json ) ) {
+			continue;
+		}
+
+		$name       = $block_json['name'];
+		$textdomain = $block_json['textdomain'];
+		if ( empty( $textdomain ) || empty( $name ) ) {
+			continue;
+		}
+
+		// Replace slashes with dashes in the block name for the script handle.
+		$script_handle = str_replace( '/', '-', $name );
+		wp_set_script_translations( $script_handle . '-view-script', $textdomain, plugin_dir_path( __FILE__ ) . 'languages' );
+		wp_set_script_translations( $script_handle . '-editor-script', $textdomain, plugin_dir_path( __FILE__ ) . 'languages' );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'Jcore\Lohko\set_script_translations' );
+add_action( 'admin_enqueue_scripts', 'Jcore\Lohko\set_script_translations' );

@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "fs";
 
 try {
-  const pluginFileName = "jcore-lohko.php";
+  const pluginFileName = "lohko.php";
   const pack = JSON.parse(readFileSync("package.json"));
   const baseFile = readFileSync(pluginFileName);
   const baseString = baseFile
