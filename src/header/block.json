@@ -1,0 +1,35 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jcore/header",
+	"version": "0.1.0",
+	"title": "JCORE Header",
+	"category": "widgets",
+	"icon": "text-page",
+	"description": "Standard header that can be used as a base.",
+	"attributes": {
+		"test": {
+			"type": "string",
+			"default": "test"
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		}
+	},
+	"textdomain": "lohko",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

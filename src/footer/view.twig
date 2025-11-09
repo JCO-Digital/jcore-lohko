@@ -1,0 +1,19 @@
+<footer id="jcore-footer" {{ wrapper_attributes }}>
+	<div class="footer-content">
+		<section id="footer-left">
+			Left
+		</section>
+		<section id="footer-middle">
+			Middle
+		</section>
+		<section id="footer-right">
+			Right
+		</section>
+		{% if copyrightShow %}
+			<section id="footer-copyright">
+				&copy; {{ copyrightText }}
+				{{ copyright_year }}
+			</section>
+		{% endif %}
+	</div>
+</footer>

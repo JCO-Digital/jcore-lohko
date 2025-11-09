@@ -1,0 +1,46 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "jcore/footer",
+	"version": "0.1.0",
+	"title": "JCORE Footer",
+	"category": "widgets",
+	"icon": "text-page",
+	"description": "Standard footer that can be used as a base.",
+	"attributes": {
+		"copyrightShow": {
+			"type": "boolean",
+			"default": true
+		},
+		"copyrightText": {
+			"type": "string",
+			"default": "Copyright"
+		},
+		"copyrightYear": {
+			"type": "number",
+			"default": 0
+		},
+		"copyrightToCurrent": {
+			"type": "boolean",
+			"default": false
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"],
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		}
+	},
+	"textdomain": "lohko",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
