@@ -1,0 +1,28 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-jcore-footer {
+	display: grid;
+	grid-template-areas:
+		"left middle right"
+		"copyright bottom bottom";
+
+	#footer-left {
+		grid-area: "left";
+	}
+	#footer-middle {
+		grid-area: "middle";
+	}
+	#footer-right {
+		grid-area: "right";
+	}
+	#footer-bottom {
+		grid-area: "bottom";
+	}
+	#footer-copyright {
+		grid-area: "copyright";
+	}
+}

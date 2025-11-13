@@ -1,0 +1,15 @@
+{# Footer menu list file #}
+{% for item in items %}
+	<li class="{{ item.class }} menu-item-{{ level }}-{{ loop.index }} item-level-{{ level }}">
+	{% if item.link == '#' %}
+			{{ item.title }}
+		{% else %}
+			<a class="menu-link link-level-{{ level }}" href="{{ item.link }}" target="{{ item.target }}">
+				{{ item.title }}
+			</a>
+		{% endif %}
+	</li>
+	{% if item.children %}
+		{% include "@lohko/footer/partial/menu-list.twig" with { items: item.children, level: level + 1 } only %}
+	{% endif %}
+{% endfor %}
