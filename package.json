@@ -12,7 +12,7 @@
     "lint:js": "wp-scripts lint-js",
     "packages-update": "wp-scripts packages-update",
     "plugin-zip": "wp-scripts plugin-zip",
-    "start": "wp-scripts start --blocks-manifest",
+    "start": "wp-scripts start --blocks-manifest --experimental-modules",
     "watch": "concurrently -c green --names ' blocks' 'pnpm start'",
     "version": "node versionSync.mjs && git add -A",
     "postversion": "git push && git push --tags",
