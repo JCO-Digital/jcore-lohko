@@ -1,6 +1,6 @@
 {
   "name": "lohko",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Plugin with default block scaffolding for JCORE.",
   "author": "J&Co Digital <support@jco.fi>",
   "license": "GPL-2.0-or-later",
