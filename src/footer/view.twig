@@ -1,16 +1,28 @@
 {# Footer #}
 <div {{ wrapper_attributes }}>
 	<section id="footer-left">
-		{% include "@lohko/footer/partial/menu.twig" with { items: menu.footer_left.get_items } only %}
+		{{ jcore_global_content('footer-left') }}
+		{% include '@lohko/footer/partial/menu.twig' with {
+			items: menu.footer_left.get_items
+		} only %}
 	</section>
 	<section id="footer-middle">
-		{% include "@lohko/footer/partial/menu.twig" with { items: menu.footer_middle.get_items } only %}
+		{{ jcore_global_content('footer-middle') }}
+		{% include '@lohko/footer/partial/menu.twig' with {
+			items: menu.footer_middle.get_items
+		} only %}
 	</section>
 	<section id="footer-right">
-		{% include "@lohko/footer/partial/menu.twig" with { items: menu.footer_right.get_items } only %}
+		{{ jcore_global_content('footer-right') }}
+		{% include '@lohko/footer/partial/menu.twig' with {
+			items: menu.footer_right.get_items
+		} only %}
 	</section>
 	<section id="footer-bottom">
-		{% include "@lohko/footer/partial/menu.twig" with { items: menu.footer_bottom.get_items } only %}
+		{{ jcore_global_content('footer-bottom') }}
+		{% include '@lohko/footer/partial/menu.twig' with {
+			items: menu.footer_bottom.get_items
+		} only %}
 	</section>
 	{% if copyrightShow %}
 		<section id="footer-copyright">
