@@ -1,0 +1,5 @@
+<ul {{ wrapper_attributes }}>
+	{% for item in menu.footer.get_items %}
+		<li class="menu-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
+	{% endfor %}
+</ul>
