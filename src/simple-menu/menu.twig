@@ -1,5 +1,5 @@
 {% for item in items %}
-	<li class="menu-item menu-item-level-{{ level }}">
+	<li class="{{ item.class }} menu-item-level-{{ level }}">
 		<a href="{{ item.url }}">{{ item.title }}</a>
 	</li>
 	{% if item.children and showChildren %}
