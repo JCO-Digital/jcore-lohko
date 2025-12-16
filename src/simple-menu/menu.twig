@@ -1,0 +1,11 @@
+{% for item in items %}
+	<li class="menu-item menu-item-level-{{ level }}">
+		<a href="{{ item.url }}">{{ item.title }}</a>
+	</li>
+	{% if item.children and showChildren %}
+		{% include '@lohko/simple-menu/menu.twig' with {
+			items: item.children,
+			level: level + 1
+		} %}
+	{% endif %}
+{% endfor %}

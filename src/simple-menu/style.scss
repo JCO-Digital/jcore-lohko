@@ -1,0 +1,25 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+ul.wp-block-jco-simple-menu {
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+
+	&.vertical {
+		@for $i from 1 through 5 {
+			.menu-item-level-#{$i} {
+				margin-left: ($i * 6) + px;
+			}
+		}
+	}
+
+	&.horizontal {
+		flex-direction: row;
+	}
+}

@@ -11,6 +11,14 @@
 		"menuLocation": {
 			"type": "string",
 			"default": ""
+		},
+		"horizontal": {
+			"type": "boolean",
+			"default": false
+		},
+		"showChildren": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"example": {},
@@ -32,7 +40,6 @@
 	},
 	"textdomain": "jcore",
 	"editorScript": "file:./index.js",
-	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
 	"render": "file:./render.php"
 }

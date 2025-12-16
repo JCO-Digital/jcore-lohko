@@ -1,5 +1,6 @@
 <ul {{ wrapper_attributes }}>
-	{% for item in menu.footer.get_items %}
-		<li class="menu-item"><a href="{{ item.url }}">{{ item.title }}</a></li>
-	{% endfor %}
+	{% include '@lohko/simple-menu/menu.twig' with {
+		items: selected_menu.get_items,
+		level: 0
+	} %}
 </ul>

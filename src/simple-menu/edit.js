@@ -1,9 +1,8 @@
 import { __ } from '@wordpress/i18n';
 import { useSelect } from '@wordpress/data';
-import { PanelBody, SelectControl } from '@wordpress/components';
+import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import ServerSideRender from '@wordpress/server-side-render';
-import './editor.css';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -39,6 +38,20 @@ export default function Edit({ attributes, setAttributes }) {
 							setAttributes({ menuLocation: value })
 						}
 						help="Choose which menu slot to display."
+					/>
+					<ToggleControl
+						label="Horizontal Menu"
+						checked={attributes.horizontal}
+						onChange={(value) =>
+							setAttributes({ horizontal: value })
+						}
+					/>
+					<ToggleControl
+						label="Show Children"
+						checked={attributes.showChildren}
+						onChange={(value) =>
+							setAttributes({ showChildren: value })
+						}
 					/>
 				</PanelBody>
 			</InspectorControls>
