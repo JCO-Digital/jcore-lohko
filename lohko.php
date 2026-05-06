@@ -46,6 +46,26 @@ add_filter(
 	}
 );
 
+/**
+ * Override block style versions with a content hash so styles are cache-busted
+ * whenever the CSS changes, without requiring a manual version bump.
+ *
+ * WordPress uses block.json's `version` field for block styles (unlike scripts,
+ * which get their version from the webpack-generated `.asset.php` hash).
+ */
+add_filter(
+	'block_type_metadata',
+	function ( $metadata ) {
+		if ( empty( $metadata['file'] ) || ! str_starts_with( $metadata['name'] ?? '', 'jcore/' ) ) {
+			return $metadata;
+		}
+		$style_file = dirname( $metadata['file'] ) . '/style-index.css';
+		if ( file_exists( $style_file ) ) {
+			$metadata['version'] = md5_file( $style_file );
+		}
+		return $metadata;
+	}
+);
 
 /**
  * Registers the block using a `blocks-manifest.php` file, which improves the performance of block type registration.
