@@ -1,2 +1,2 @@
 changelog = true
-version-sync = ["lohko.php", "package.json"]
+version-sync = ["lohko.php"]
