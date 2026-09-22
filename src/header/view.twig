@@ -1,3 +1,25 @@
-<div id="jcore-example" {{ wrapper_attributes }}>
-  Example Dynamic
-</div>
+<header {{ wrapper_attributes }}>
+	<div class="lohko-header__inner">
+		{% if showLogo %}
+			<div class="lohko-header__brand">
+				{% include '@lohko/navbar-brand.twig' %}
+			</div>
+		{% endif %}
+
+		{% if nav_menu %}
+			<nav class="lohko-header__nav" aria-label="{{ __('Main navigation', 'lohko') }}">
+				<ul class="lohko-header__menu">
+					{% include '@lohko/menu.twig' with {
+						items: nav_menu.get_items,
+						level: 0,
+						show_children: showChildren
+					} only %}
+				</ul>
+			</nav>
+		{% endif %}
+
+		{% if content %}
+			<div class="lohko-header__content">{{ content|raw }}</div>
+		{% endif %}
+	</div>
+</header>

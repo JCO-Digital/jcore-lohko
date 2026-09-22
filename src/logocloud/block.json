@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "jcore/logocloud",
+  "name": "lohko/logocloud",
   "version": "0.1.0",
-  "title": "logocloud",
+  "title": "Logo Cloud",
   "category": "widgets",
   "icon": "text-page",
   "description": "Block for logos",
@@ -23,7 +23,7 @@
       "text": true
     }
   },
-  "textdomain": "jcore",
+  "textdomain": "lohko",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"

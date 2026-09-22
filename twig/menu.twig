@@ -1,0 +1,25 @@
+{#
+	Shared menu item renderer.
+
+	items         The Timber MenuItem list to render.
+	level         Current depth, starting at 0.
+	show_children Whether to descend into child items.
+#}
+{% for item in items %}
+	<li class="{{ item.class }} menu-item-level-{{ level }}{{ item.children ? ' has-children' : '' }}">
+		{% if item.link == '#' %}
+			<span class="menu-text">{{ item.title }}</span>
+		{% else %}
+			<a class="menu-link" href="{{ item.link }}"{% if item.target %} target="{{ item.target }}"{% endif %}>{{ item.title }}</a>
+		{% endif %}
+		{% if item.children and show_children %}
+			<ul class="sub-menu sub-menu-level-{{ level + 1 }}">
+				{% include '@lohko/menu.twig' with {
+					items: item.children,
+					level: level + 1,
+					show_children: show_children
+				} only %}
+			</ul>
+		{% endif %}
+	</li>
+{% endfor %}

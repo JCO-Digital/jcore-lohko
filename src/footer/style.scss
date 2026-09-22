@@ -1,22 +1,43 @@
-.wp-block-jcore-footer {
+.wp-block-lohko-footer {
 	display: grid;
+	gap: 1rem;
 	grid-template-areas:
-		"left middle right"
-		"copyright bottom bottom";
+		"left"
+		"middle"
+		"right"
+		"bottom"
+		"copyright";
 
-	#footer-left {
-		grid-area: "left";
+	@media (min-width: 782px) {
+		grid-template-areas:
+			"left middle right"
+			"copyright bottom bottom";
 	}
-	#footer-middle {
-		grid-area: "middle";
+
+	.lohko-footer__left {
+		grid-area: left;
 	}
-	#footer-right {
-		grid-area: "right";
+
+	.lohko-footer__middle {
+		grid-area: middle;
 	}
-	#footer-bottom {
-		grid-area: "bottom";
+
+	.lohko-footer__right {
+		grid-area: right;
 	}
-	#footer-copyright {
-		grid-area: "copyright";
+
+	.lohko-footer__bottom {
+		grid-area: bottom;
+	}
+
+	.lohko-footer__copyright {
+		grid-area: copyright;
+	}
+
+	.menu,
+	.menu .sub-menu {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
 }

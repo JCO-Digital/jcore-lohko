@@ -1,22 +1,28 @@
-<ul id="{{ id }}" class="menu menu-{{ level }}">
-    {% for item in items %}
+<ul id="{{ id }}" class="menu menu-level-{{ level }}">
+	{% for item in items %}
 		{% set itemId = id ~ '-' ~ item.id %}
-		<li id="menu-item-{{ level }}-{{ loop.index }}" class="{{ item.class }}">
-		{% if item.link == '#' and level > 0 %}
-				{{ item.title }}
+		<li class="{{ item.class }} menu-item-level-{{ level }}{{ item.children ? ' has-children' : '' }}">
+			{% if item.link == '#' and level > 0 %}
+				<span class="menu-text">{{ item.title }}</span>
 			{% else %}
-				<a class="menu-link menu-link-{{ level }}" href="{{ item.link }}" target="{{ item.target }}" {% if level == 0 %} data-jtoggle="#{{ itemId }}" data-class="open" data-group="{{ id }}" data-jfocus {% endif %}>
-					{{ item.title | shorten }}
+				<a class="menu-link menu-link-{{ level }}" href="{{ item.link }}"{% if item.target %} target="{{ item.target }}"{% endif %}{% if level == 0 %} data-jtoggle="#{{ itemId }}" data-class="open" data-group="{{ id }}" data-jfocus{% endif %}>
+					{{ item.title|shorten }}
 				</a>
 			{% endif %}
-			{% if item.children %}
-			{% if level == 0 %}
-				<button tabindex="-1" class="toggle" data-jtoggle="#{{ itemId }}" data-class="open" data-group="{{ id }}">
-					<i class="fa-solid fa-angle-up"></i>
-					<i class="fa-solid fa-angle-down"></i>
-				</button>
-			{% endif %}
-				{% include "@lohko/navigation/partial/menu.twig" with { items: item.children, id: itemId, level: level + 1 } only %}
+
+			{% if item.children and show_children %}
+				{% if level == 0 %}
+					<button tabindex="-1" class="toggle" data-jtoggle="#{{ itemId }}" data-class="open" data-group="{{ id }}">
+						<span class="screen-reader-text">{{ __('Toggle submenu', 'lohko') }}</span>
+						{% include '@lohko/navigation/partial/chevron.twig' %}
+					</button>
+				{% endif %}
+				{% include '@lohko/navigation/partial/menu.twig' with {
+					items: item.children,
+					id: itemId,
+					level: level + 1,
+					show_children: show_children
+				} only %}
 			{% endif %}
 		</li>
 	{% endfor %}

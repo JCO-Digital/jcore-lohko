@@ -1,0 +1,20 @@
+.wp-block-lohko-logocloud {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding-top: 3rem;
+	padding-bottom: 2rem;
+
+	figure {
+		display: flex;
+		justify-content: center;
+		margin: 0;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}

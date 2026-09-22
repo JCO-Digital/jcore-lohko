@@ -19,15 +19,15 @@ import './editor.scss';
 export default function Edit() {
 	return (
 		<>
-			<div {...useBlockProps()}>
+			<div { ...useBlockProps() }>
 				<InnerBlocks
-					allowedBlocks={['jcore/accordion-item']}
-					template={[
+					allowedBlocks={ [ 'lohko/accordion-item' ] }
+					template={ [
 						[
-							'jcore/accordion-item',
+							'lohko/accordion-item',
 							{ title: 'Accordion Title 1' },
 						],
-					]}
+					] }
 				/>
 			</div>
 		</>

@@ -1,6 +1,7 @@
 <ul {{ wrapper_attributes }}>
-	{% include '@lohko/simple-menu/menu.twig' with {
+	{% include '@lohko/menu.twig' with {
 		items: selected_menu.get_items,
-		level: 0
-	} %}
+		level: 0,
+		show_children: showChildren
+	} only %}
 </ul>

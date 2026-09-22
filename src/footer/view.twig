@@ -1,33 +1,20 @@
 {# Footer #}
 <div {{ wrapper_attributes }}>
-	<section id="footer-left">
-		{{ jcore_global_content('footer-left') }}
-		{% include '@lohko/footer/partial/menu.twig' with {
-			items: menu.footer_left.get_items
-		} only %}
-	</section>
-	<section id="footer-middle">
-		{{ jcore_global_content('footer-middle') }}
-		{% include '@lohko/footer/partial/menu.twig' with {
-			items: menu.footer_middle.get_items
-		} only %}
-	</section>
-	<section id="footer-right">
-		{{ jcore_global_content('footer-right') }}
-		{% include '@lohko/footer/partial/menu.twig' with {
-			items: menu.footer_right.get_items
-		} only %}
-	</section>
-	<section id="footer-bottom">
-		{{ jcore_global_content('footer-bottom') }}
-		{% include '@lohko/footer/partial/menu.twig' with {
-			items: menu.footer_bottom.get_items
-		} only %}
-	</section>
+	{% for area in ['left', 'middle', 'right', 'bottom'] %}
+		{% set area_menu = menu[ 'footer_' ~ area ] %}
+		<section class="lohko-footer__section lohko-footer__{{ area }}">
+			{{ jcore_global_content('footer-' ~ area) }}
+			{% if area_menu %}
+				{% include '@lohko/footer/partial/menu.twig' with {
+					items: area_menu.get_items
+				} only %}
+			{% endif %}
+		</section>
+	{% endfor %}
+
 	{% if copyrightShow %}
-		<section id="footer-copyright">
-			&copy; {{ copyrightText }}
-			{{ copyright_year }}
+		<section class="lohko-footer__section lohko-footer__copyright">
+			&copy; {{ copyrightText }} {{ copyright_year }}
 		</section>
 	{% endif %}
 </div>

@@ -5,12 +5,14 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-jcore-accordion-item {
+.wp-block-lohko-accordion-item {
+
 	.accordion-item__header {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		width: 100%;
+
 		.accordion-item__toggle {
 			display: flex;
 			align-items: center;
@@ -23,19 +25,47 @@
 			color: #fff;
 			cursor: pointer;
 		}
-		.accordion-item__toggle-icon::before {
-			font-family: "Font Awesome 6 Pro";
-			content: "\f067";
+
+		.accordion-item__toggle-icon {
+			position: relative;
+			display: block;
+			width: 0.75rem;
+			height: 0.75rem;
+		}
+
+		.accordion-item__toggle-icon::before,
+		.accordion-item__toggle-icon::after {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 100%;
+			height: 2px;
+			background-color: currentcolor;
+			content: "";
+			transform: translateY(-50%);
+			transition: transform 0.2s ease;
+		}
+
+		.accordion-item__toggle-icon::after {
+			transform: translateY(-50%) rotate(90deg);
+		}
+
+		&.active .accordion-item__toggle-icon::after {
+			transform: translateY(-50%) rotate(0deg);
 		}
 	}
+
 	.accordion-item__content {
 		overflow: hidden;
 		display: none;
 	}
+
 	&.active {
+
 		.accordion-item__toggle-icon::before {
 			content: "\f068";
 		}
+
 		.accordion-item__content {
 			display: block;
 		}

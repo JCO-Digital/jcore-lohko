@@ -1,0 +1,29 @@
+.wp-block-lohko-header {
+
+	.lohko-header__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.lohko-header__menu,
+	.lohko-header__menu .sub-menu {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 1rem;
+	}
+
+	.lohko-header__menu .sub-menu {
+		flex-direction: column;
+	}
+
+	.lohko-header__content {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+	}
+}

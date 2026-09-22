@@ -1,9 +1,21 @@
 <?php
+/**
+ * Render the navigation block.
+ *
+ * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
+ *
+ * @package Jcore\Lohko
+ *
+ * @var array $attributes Block attributes.
+ */
+
+namespace Jcore\Lohko;
 
 use Timber\Timber;
 
-$context = Timber::context( $attributes );
+$location = $attributes['menuLocation'] ?? 'primary';
 
-$context['wrapper_attributes'] = get_block_wrapper_attributes();
+$context             = block_context( $attributes );
+$context['nav_menu'] = Timber::get_menu( $location );
 
 Timber::render( '@lohko/navigation/view.twig', $context );

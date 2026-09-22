@@ -1,9 +1,9 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "jcore/footer",
+	"name": "lohko/footer",
 	"version": "0.1.0",
-	"title": "JCORE Footer",
+	"title": "Footer",
 	"category": "widgets",
 	"icon": "text-page",
 	"description": "Standard footer that can be used as a base.",

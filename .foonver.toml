@@ -1,0 +1,2 @@
+changelog = true
+version-sync = ["lohko.php", "package.json"]

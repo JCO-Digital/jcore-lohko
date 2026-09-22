@@ -1,13 +1,13 @@
 // Import the original config from the @wordpress/scripts package.
-const wordpressConfig = require('@wordpress/scripts/config/webpack.config');
-const path = require('path');
+const wordpressConfig = require( '@wordpress/scripts/config/webpack.config' );
+const path = require( 'path' );
 
 /**
  * Extend the shared config to include the jcore-media breakpoints.
  * @param {Object} config - The original config.
- * @returns {Object} The extended config.
+ * @return {Object} The extended config.
  */
-function extendSharedConfig(config) {
+function extendSharedConfig( config ) {
 	return {
 		...config,
 		resolve: {
@@ -27,9 +27,9 @@ function extendSharedConfig(config) {
  * The Script Config is for non module-files (e.g. non-interactivity API files)
  *
  * @param {Object} config - The original config.
- * @returns {Object} The extended config.
+ * @return {Object} The extended config.
  */
-function extendScriptConfig(config) {
+function extendScriptConfig( config ) {
 	return {
 		...config,
 	};
@@ -41,28 +41,27 @@ function extendScriptConfig(config) {
  * The Module Config is for module-files (e.g. interactivity API files)
  *
  * @param {Object} config - The original config.
- * @returns {Object} The extended config.
+ * @return {Object} The extended config.
  */
-function extendModuleConfig(config) {
+function extendModuleConfig( config ) {
 	return {
 		...config,
-		target: ['web'],
+		target: [ 'web' ],
 	};
 }
 
-module.exports = (() => {
-	if (Array.isArray(wordpressConfig)) {
-		const [scriptConfig, moduleConfig] = wordpressConfig;
+module.exports = ( () => {
+	if ( Array.isArray( wordpressConfig ) ) {
+		const [ scriptConfig, moduleConfig ] = wordpressConfig;
 
 		const extendedScriptConfig = extendSharedConfig(
-			extendScriptConfig(scriptConfig)
+			extendScriptConfig( scriptConfig )
 		);
 		const extendedModuleConfig = extendSharedConfig(
-			extendModuleConfig(moduleConfig)
+			extendModuleConfig( moduleConfig )
 		);
 
-		return [extendedScriptConfig, extendedModuleConfig];
-	} else {
-		return extendSharedConfig(extendScriptConfig(wordpressConfig));
+		return [ extendedScriptConfig, extendedModuleConfig ];
 	}
-})();
+	return extendSharedConfig( extendScriptConfig( wordpressConfig ) );
+} )();

@@ -1,13 +1,13 @@
 {
 	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
-	"name": "jcore/accordion-item",
+	"name": "lohko/accordion-item",
 	"version": "0.1.0",
 	"title": "Accordion Item",
 	"category": "widgets",
 	"icon": "text-page",
 	"description": "Accordion Item",
-	"parent": ["jcore/accordions"],
+	"parent": ["lohko/accordions"],
 	"attributes": {
 		"title": {
 			"type": "string",
@@ -19,7 +19,7 @@
 			"type": "string",
 			"source": "attribute",
 			"attribute": "data-accordion-id",
-			"selector": ".wp-block-jcore-accordion-item"
+			"selector": ".wp-block-lohko-accordion-item"
 		}
 	},
 	"example": {},
@@ -35,7 +35,7 @@
 			"text": true
 		}
 	},
-	"textdomain": "jcore",
+	"textdomain": "lohko",
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css"

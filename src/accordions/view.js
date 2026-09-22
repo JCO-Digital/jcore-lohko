@@ -1,55 +1,90 @@
 import { getContext, getElement, store } from '@wordpress/interactivity';
 
-const getParent = (element) => {
-	if (!element.getAttribute('data-accordion-id')) {
-		element = element.closest('[data-accordion-id]');
+const ACCORDION_HASH_PREFIX = 'accordion-';
+
+/**
+ * Find the accordion item element an event target belongs to.
+ *
+ * @param {HTMLElement} element Element inside an accordion item.
+ *
+ * @return {HTMLElement|null} The accordion item, or null when not found.
+ */
+const getItem = ( element ) => {
+	if ( ! element ) {
+		return null;
 	}
-	return element;
+	if ( element.getAttribute( 'data-accordion-id' ) ) {
+		return element;
+	}
+	return element.closest( '[data-accordion-id]' );
 };
 
-const getAccordionId = (element) => {
-	const accordionEl = getParent(element);
-	return accordionEl.getAttribute('data-accordion-id');
+/**
+ * Read the accordion id an element belongs to.
+ *
+ * @param {HTMLElement} element Element inside an accordion item.
+ *
+ * @return {string} The id, or an empty string when not found.
+ */
+const getAccordionId = ( element ) => {
+	const item = getItem( element );
+	return item ? item.getAttribute( 'data-accordion-id' ) ?? '' : '';
 };
 
-store('jcore/accordions', {
+store( 'lohko/accordions', {
 	state: {
 		get isActive() {
 			const context = getContext();
 			const { ref } = getElement();
-			return context.currentAccordion === getAccordionId(ref);
+			const id = getAccordionId( ref );
+			return id !== '' && context.currentAccordion === id;
 		},
 	},
 	actions: {
 		parseUrl() {
-			const context = getContext();
-			// Anchor link from url #accordion-<id>
-			const url = window.location.href;
-			const id = url.split('#')[1];
-			if (!id) return;
-			if (!id.startsWith('accordion-')) return;
-			const pureId = id.split('-')[1];
-			if (!pureId) return;
-			context.currentAccordion = pureId;
+			const hash = window.location.hash.slice( 1 );
+			if ( ! hash.startsWith( ACCORDION_HASH_PREFIX ) ) {
+				return;
+			}
+
+			// Keep the whole remainder: ids may contain hyphens.
+			const id = hash.slice( ACCORDION_HASH_PREFIX.length );
+			if ( ! id ) {
+				return;
+			}
+
+			getContext().currentAccordion = id;
 		},
 		openAccordion() {
 			const { ref } = getElement();
+			const item = getItem( ref );
+
+			if ( ! item ) {
+				return;
+			}
+
+			const id = item.getAttribute( 'data-accordion-id' ) ?? '';
+
+			if ( id === '' ) {
+				return;
+			}
+
 			const context = getContext();
-			const accordionEl = getParent(ref);
-			const id = getAccordionId(ref);
-			if (!id) return;
-			const currentlyActive = context.currentAccordion === id;
-			context.currentAccordion = currentlyActive ? '' : id;
-			if (!currentlyActive) {
-				accordionEl.scrollIntoView({ behavior: 'smooth' });
-				window.history.pushState(null, '', `#${accordionEl.id}`);
-			} else {
+
+			const wasActive = context.currentAccordion === id;
+			context.currentAccordion = wasActive ? '' : id;
+
+			if ( wasActive ) {
 				window.history.pushState(
 					null,
 					'',
-					window.location.href.split('#')[0]
+					window.location.pathname + window.location.search
 				);
+				return;
 			}
+
+			item.scrollIntoView( { behavior: 'smooth' } );
+			window.history.pushState( null, '', `#${ item.id }` );
 		},
 	},
-});
+} );

@@ -1,25 +1,36 @@
-import React from '@wordpress/element';
-import { createRoot } from '@wordpress/element';
-import Rive, { Alignment, Fit, Layout } from '@rive-app/react-canvas';
+/**
+ * Front end runtime for the Rive animation block.
+ *
+ * Uses the plain canvas runtime rather than the React wrapper, which keeps the
+ * view bundle to the Rive runtime alone.
+ */
+import { Alignment, Fit, Layout, Rive } from '@rive-app/canvas';
 
 document
-	.querySelectorAll('.wp-block-jcore-rive-animation')
-	.forEach((container) => {
-		const riveFileUrl = container.dataset.riveFileUrl;
-		const stateMachineName = container.dataset.riveStateMachine;
+	.querySelectorAll( '.wp-block-lohko-rive-animation' )
+	.forEach( ( container ) => {
+		const { riveFileUrl, riveStateMachine } = container.dataset;
 
-		if (riveFileUrl) {
-			createRoot(container).render(
-				<Rive
-					src={riveFileUrl}
-					layout={
-						new Layout({
-							fit: Fit.FitHeight,
-							alignment: Alignment.BottomCenter,
-						})
-					}
-					stateMachines={stateMachineName ? [stateMachineName] : []}
-				/>
-			);
+		if ( ! riveFileUrl ) {
+			return;
 		}
-	});
+
+		const canvas = document.createElement( 'canvas' );
+		container.appendChild( canvas );
+
+		const rive = new Rive( {
+			canvas,
+			src: riveFileUrl,
+			autoplay: true,
+			stateMachines: riveStateMachine ? [ riveStateMachine ] : undefined,
+			layout: new Layout( {
+				fit: Fit.FitHeight,
+				alignment: Alignment.BottomCenter,
+			} ),
+			onLoad: () => rive.resizeDrawingSurfaceToCanvas(),
+		} );
+
+		window.addEventListener( 'resize', () =>
+			rive.resizeDrawingSurfaceToCanvas()
+		);
+	} );

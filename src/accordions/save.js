@@ -21,11 +21,11 @@ export default function save() {
 	};
 	return (
 		<div
-			{...useBlockProps.save({
-				'data-wp-interactive': 'jcore/accordions',
-				'data-wp-context': JSON.stringify(context),
+			{ ...useBlockProps.save( {
+				'data-wp-interactive': 'lohko/accordions',
+				'data-wp-context': JSON.stringify( context ),
 				'data-wp-init': 'actions.parseUrl',
-			})}
+			} ) }
 		>
 			<InnerBlocks.Content />
 		</div>

@@ -1,64 +1,66 @@
 import { __ } from '@wordpress/i18n';
-import { useSelect } from '@wordpress/data';
 import { PanelBody, SelectControl, ToggleControl } from '@wordpress/components';
 import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 import ServerSideRender from '@wordpress/server-side-render';
+
+import metadata from './block.json';
+import { useMenuLocationOptions } from '../shared/use-menu-locations';
 
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
+ * @param {Object}   props               Block props.
+ * @param {Object}   props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Attribute setter.
+ *
  * @return {Element} Element to render.
  */
-export default function Edit({ attributes, setAttributes }) {
-	// Fetch menu locations from the REST API
-	const menuLocations = useSelect((select) => {
-		return select('core').getMenuLocations();
-	}, []);
+export default function Edit( { attributes, setAttributes } ) {
+	const { menuLocation, horizontal, showChildren } = attributes;
+	const menuOptions = useMenuLocationOptions();
 
-	// Ensure menuLocation is always a string
-	const menuLocation = attributes.menuLocation || '';
-
-	// Prepare options for the select box
-	const options = menuLocations
-		? menuLocations.map(({ description, name }) => ({
-				label: description,
-				value: name,
-			}))
-		: [];
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={__('Settings', 'lohko')}>
+				<PanelBody title={ __( 'Settings', 'lohko' ) }>
 					<SelectControl
-						label="Select Menu Location"
-						value={menuLocation}
-						options={options}
-						onChange={(value) =>
-							setAttributes({ menuLocation: value })
-						}
-						help="Choose which menu slot to display."
-					/>
-					<ToggleControl
-						label="Horizontal Menu"
-						checked={attributes.horizontal}
-						onChange={(value) =>
-							setAttributes({ horizontal: value })
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label={ __( 'Menu location', 'lohko' ) }
+						help={ __(
+							'Choose which menu slot to display.',
+							'lohko'
+						) }
+						value={ menuLocation }
+						options={ menuOptions }
+						onChange={ ( value ) =>
+							setAttributes( { menuLocation: value } )
 						}
 					/>
 					<ToggleControl
-						label="Show Children"
-						checked={attributes.showChildren}
-						onChange={(value) =>
-							setAttributes({ showChildren: value })
+						__nextHasNoMarginBottom
+						label={ __( 'Horizontal menu', 'lohko' ) }
+						checked={ horizontal }
+						onChange={ ( value ) =>
+							setAttributes( { horizontal: value } )
+						}
+					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __( 'Show sub menus', 'lohko' ) }
+						checked={ showChildren }
+						onChange={ ( value ) =>
+							setAttributes( { showChildren: value } )
 						}
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div {...useBlockProps()}>
+
+			<div { ...useBlockProps() }>
 				<ServerSideRender
-					block="jco/simple-menu"
-					attributes={{ ...attributes, preview: true }}
+					block={ metadata.name }
+					attributes={ attributes }
 				/>
 			</div>
 		</>

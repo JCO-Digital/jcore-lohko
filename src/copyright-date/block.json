@@ -1,46 +1,46 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/block.json",
-  "apiVersion": 3,
-  "name": "jcore/copyright-date",
-  "version": "0.1.0",
-  "title": "copyright-date",
-  "category": "widgets",
-  "icon": "text-page",
-  "description": "A block that shows copyright date and Company name, either as a year interval or current year.",
-  "attributes": {
-    "showStartingYear": {
-      "type": "boolean"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lohko/copyright-date",
+	"version": "0.1.0",
+	"title": "Copyright Date",
+	"category": "widgets",
+	"icon": "text-page",
+	"description": "A block that shows copyright date and Company name, either as a year interval or current year.",
+	"attributes": {
+		"showStartingYear": {
+			"type": "boolean",
+			"default": false
 		},
 		"startingYear": {
-			"type": "string"
+			"type": "string",
+			"default": ""
 		},
 		"companyName": {
-			"type": "string"
+			"type": "string",
+			"default": ""
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false,
+		"typography": {
+			"fontSize": true
 		},
-    "currentYear": {
-      "type": "string"
-    }
-  },
-  "example": {},
-  "supports": {
-    "html": false,
-    "typography": {
-        "fontSize": true
-    },
-    "align": [
-      "wide",
-      "full"
-    ],
-    "background": {
-      "backgroundImage": true,
-      "backgroundSize": true
-    },
-    "color": {
-      "background": true,
-      "text": true
-    }
-  },
-  "textdomain": "jcore",
-  "editorScript": "file:./index.js",
-  "render": "file:./render.php"
+		"align": [
+			"wide",
+			"full"
+		],
+		"background": {
+			"backgroundImage": true,
+			"backgroundSize": true
+		},
+		"color": {
+			"background": true,
+			"text": true
+		}
+	},
+	"textdomain": "lohko",
+	"editorScript": "file:./index.js",
+	"render": "file:./render.php"
 }

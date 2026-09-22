@@ -1,0 +1,25 @@
+.wp-block-lohko-navigation {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+
+	.menu {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 1rem;
+	}
+
+	.menu-level-1 {
+		flex-direction: column;
+	}
+
+	.toggle .menu-chevron {
+		transition: transform 0.2s ease;
+	}
+
+	.open > .toggle .menu-chevron {
+		transform: rotate(180deg);
+	}
+}

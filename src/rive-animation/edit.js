@@ -2,124 +2,114 @@ import { __ } from '@wordpress/i18n';
 import {
 	InspectorControls,
 	useBlockProps,
-	MediaUpload,
-	MediaUploadCheck,
 	BlockControls,
 	MediaReplaceFlow,
 	MediaPlaceholder,
 } from '@wordpress/block-editor';
-import {
-	PanelBody,
-	Button,
-	Placeholder,
-	TextControl,
-	Popover,
-} from '@wordpress/components';
-import './editor.css';
-import Rive, { Layout, Fit, Alignment } from '@rive-app/react-canvas';
+import { PanelBody, TextControl } from '@wordpress/components';
+import Rive, { Alignment, Fit, Layout } from '@rive-app/react-canvas';
+
+import './editor.scss';
 
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
  *
+ * @param {Object}   props               Block props.
+ * @param {Object}   props.attributes    Block attributes.
+ * @param {Function} props.setAttributes Attribute setter.
+ *
  * @return {Element} Element to render.
  */
-export default function Edit({ attributes, setAttributes }) {
+export default function Edit( { attributes, setAttributes } ) {
+	const { riveFile, riveFileUrl, stateMachineName } = attributes;
+
+	const onSelect = ( media ) =>
+		setAttributes( {
+			riveFile: media.id,
+			riveFileUrl: media.url,
+			riveFileName: media.name,
+		} );
+
+	const onSelectURL = ( url ) =>
+		setAttributes( {
+			riveFile: undefined,
+			riveFileUrl: url,
+			riveFileName: undefined,
+		} );
+
 	return (
 		<>
 			<BlockControls>
 				<MediaReplaceFlow
-					mediaURL={attributes.riveFileUrl}
-					mediaId={attributes.riveFile}
-					allowedTypes={['application/riv']}
-					accept={['application/riv']}
-					onSelect={(media) => {
-						setAttributes({
-							riveFile: media.id,
-							riveFileUrl: media.url,
-							riveFileName: media.name,
-						});
-					}}
-					onReset={() =>
-						setAttributes({
-							riveFile: null,
-							riveFileUrl: null,
-							riveFileName: null,
-						})
+					mediaURL={ riveFileUrl }
+					mediaId={ riveFile }
+					allowedTypes={ [ 'application/riv' ] }
+					accept={ [ 'application/riv' ] }
+					onSelect={ onSelect }
+					onSelectURL={ onSelectURL }
+					onReset={ () =>
+						setAttributes( {
+							riveFile: undefined,
+							riveFileUrl: '',
+							riveFileName: undefined,
+						} )
 					}
-					onSelectURL={(url) => {
-						setAttributes({
-							riveFile: null,
-							riveFileUrl: url,
-							riveFileName: null,
-						});
-					}}
 					name={
-						!attributes.riveFileUrl
-							? __('Add Rive file')
-							: __('Replace Rive file')
+						riveFileUrl
+							? __( 'Replace Rive file', 'lohko' )
+							: __( 'Add Rive file', 'lohko' )
 					}
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={__('Settings')}>
+				<PanelBody title={ __( 'Settings', 'lohko' ) }>
 					<TextControl
-						label={'State Machine Name'}
-						value={attributes.stateMachineName ?? ''}
-						onChange={(newValue) =>
-							setAttributes({ stateMachineName: newValue })
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label={ __( 'State machine name', 'lohko' ) }
+						value={ stateMachineName ?? '' }
+						help={ __(
+							'The name of the state machine to control the animation.',
+							'lohko'
+						) }
+						onChange={ ( value ) =>
+							setAttributes( { stateMachineName: value } )
 						}
-						help={__(
-							'The name of the state machine to control the animation.'
-						)}
 					/>
 				</PanelBody>
 			</InspectorControls>
 
-			<div {...useBlockProps()}>
-				{attributes.riveFileUrl ? (
+			<div { ...useBlockProps() }>
+				{ riveFileUrl ? (
 					<Rive
-						src={attributes.riveFileUrl}
+						src={ riveFileUrl }
 						layout={
-							new Layout({
+							new Layout( {
 								fit: Fit.FitHeight,
 								alignment: Alignment.BottomCenter,
-							})
+							} )
 						}
 						stateMachines={
-							attributes.stateMachineName
-								? attributes.stateMachineName
-								: undefined
+							stateMachineName ? [ stateMachineName ] : undefined
 						}
 					/>
 				) : (
 					<MediaPlaceholder
 						icon="superhero"
-						labels={{
-							title: __('Rive Animation', 'jcore'),
+						labels={ {
+							title: __( 'Rive Animation', 'lohko' ),
 							instructions: __(
 								'Select a .riv file to display the animation.',
-								'jcore'
+								'lohko'
 							),
-						}}
-						allowedTypes={['application/riv']}
-						onSelect={(media) => {
-							setAttributes({
-								riveFile: media.id,
-								riveFileUrl: media.url,
-								riveFileName: media.name,
-							});
-						}}
-						accept={['application/riv']}
-						onSelectURL={(url) => {
-							setAttributes({
-								riveFile: null,
-								riveFileUrl: url,
-								riveFileName: null,
-							});
-						}}
+						} }
+						allowedTypes={ [ 'application/riv' ] }
+						accept={ [ 'application/riv' ] }
+						onSelect={ onSelect }
+						onSelectURL={ onSelectURL }
 					/>
-				)}
+				) }
 			</div>
 		</>
 	);

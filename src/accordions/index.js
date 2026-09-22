@@ -3,7 +3,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-import { registerBlockStyle, registerBlockType } from '@wordpress/blocks';
+import { registerBlockType } from '@wordpress/blocks';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -26,7 +26,7 @@ import metadata from './block.json';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-registerBlockType(metadata.name, {
+registerBlockType( metadata.name, {
 	/**
 	 * @see ./edit.js
 	 */
@@ -46,10 +46,9 @@ registerBlockType(metadata.name, {
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
-				stroke-width="1.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				class="lucide lucide-list-collapse-icon lucide-list-collapse"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			>
 				<path d="m3 10 2.5-2.5L3 5" fill="none" />
 				<path d="m3 19 2.5-2.5L3 14" fill="none" />
@@ -59,4 +58,4 @@ registerBlockType(metadata.name, {
 			</svg>
 		),
 	},
-});
+} );

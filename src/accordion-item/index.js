@@ -26,7 +26,7 @@ import metadata from './block.json';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
-registerBlockType(metadata.name, {
+registerBlockType( metadata.name, {
 	/**
 	 * @see ./edit.js
 	 */
@@ -46,14 +46,13 @@ registerBlockType(metadata.name, {
 				viewBox="0 0 24 24"
 				fill="none"
 				stroke="currentColor"
-				stroke-width="1.5"
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				class="lucide lucide-circle-chevron-right-icon lucide-circle-chevron-right"
+				strokeWidth="1.5"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			>
 				<circle cx="12" cy="12" r="10" fill="none" />
 				<path d="m10 8 4 4-4 4" fill="none" />
 			</svg>
 		),
 	},
-});
+} );
