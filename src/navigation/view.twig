@@ -1,9 +1,11 @@
 <nav {{ wrapper_attributes }} aria-label="{{ __('Main navigation', 'lohko') }}">
 	{% block navbar %}
 		{% block logo %}
-			<div class="brand">
-				{% include '@lohko/navbar-brand.twig' %}
-			</div>
+			{% if showLogo %}
+				<div class="brand">
+					{% include '@lohko/navbar-brand.twig' %}
+				</div>
+			{% endif %}
 		{% endblock %}
 
 		{% block menu %}
@@ -18,15 +20,23 @@
 		{% endblock %}
 
 		{% block search %}
-			<button id="searchbar-toggle" class="toggle-search" data-jtoggle="#menu-searchbar">
-				<span class="screen-reader-text">{{ __('Search', 'lohko') }}</span>
-				{% include '@lohko/navigation/partial/search.twig' %}
-			</button>
+			{% if showSearch %}
+				<button id="searchbar-toggle" class="toggle-search" data-jtoggle="#menu-searchbar">
+					<span class="screen-reader-text">{{ __('Search', 'lohko') }}</span>
+					{% include '@lohko/navigation/partial/search.twig' %}
+				</button>
+			{% endif %}
 		{% endblock %}
 
 		<button class="hamburger" data-jtoggle="#lohko-menu" data-class="mobile-open">
 			<span class="screen-reader-text">{{ __('Menu', 'lohko') }}</span>
 			{% include '@lohko/navigation/partial/hamburger.twig' %}
 		</button>
+
+		{% if showSearch %}
+			<div id="menu-searchbar" class="searchbar-container">
+				{{ search_form|raw }}
+			</div>
+		{% endif %}
 	{% endblock %}
 </nav>

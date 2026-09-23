@@ -2,9 +2,23 @@
 	position: relative;
 	width: 100%;
 
-	&[data-jsticky] {
+	&[data-jsticky],
+	&.sticky {
 		position: sticky;
-		top: 0;
+		top: var(--wp-admin--admin-bar--height, 0);
 		z-index: 100;
+	}
+
+	&.scrollActive {
+		transition: margin-top 300ms ease;
+
+		&.scrollTop,
+		&.scrollUp {
+			margin-top: 0;
+		}
+
+		&.scrollDown {
+			margin-top: calc(var(--jutils-height, 80px) * -1);
+		}
 	}
 }

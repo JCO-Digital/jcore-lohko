@@ -15,7 +15,8 @@ use Timber\Timber;
 
 $location = $attributes['menuLocation'] ?? 'primary';
 
-$context             = block_context( $attributes );
-$context['nav_menu'] = Timber::get_menu( $location );
+$context                = block_context( $attributes );
+$context['nav_menu']    = Timber::get_menu( $location );
+$context['search_form'] = get_search_form( false );
 
 Timber::render( '@lohko/navigation/view.twig', $context );

@@ -12,6 +12,14 @@
 			"type": "string",
 			"default": ""
 		},
+		"showLogo": {
+			"type": "boolean",
+			"default": true
+		},
+		"showSearch": {
+			"type": "boolean",
+			"default": true
+		},
 		"showChildren": {
 			"type": "boolean",
 			"default": true
@@ -20,10 +28,7 @@
 	"example": {},
 	"supports": {
 		"html": false,
-		"align": [
-			"wide",
-			"full"
-		],
+		"align": ["wide", "full"],
 		"background": {
 			"backgroundImage": true,
 			"backgroundSize": true

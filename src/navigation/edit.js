@@ -18,7 +18,7 @@ import { useMenuLocationOptions } from '../shared/use-menu-locations';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { menuLocation, showChildren } = attributes;
+	const { menuLocation, showLogo, showSearch, showChildren } = attributes;
 	const menuOptions = useMenuLocationOptions();
 
 	return (
@@ -37,6 +37,27 @@ export default function Edit( { attributes, setAttributes } ) {
 						options={ menuOptions }
 						onChange={ ( value ) =>
 							setAttributes( { menuLocation: value } )
+						}
+					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __( 'Show logo', 'lohko' ) }
+						help={ __( 'Displays the site logo.', 'lohko' ) }
+						checked={ showLogo }
+						onChange={ ( value ) =>
+							setAttributes( { showLogo: value } )
+						}
+					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __( 'Show search', 'lohko' ) }
+						help={ __(
+							'Displays the search toggle and search bar.',
+							'lohko'
+						) }
+						checked={ showSearch }
+						onChange={ ( value ) =>
+							setAttributes( { showSearch: value } )
 						}
 					/>
 					<ToggleControl
