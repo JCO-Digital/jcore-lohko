@@ -1,9 +1,12 @@
 # Changelog
 
-### 1.0.0-beta.1 (2026-09-22)
+## 1.0.0 (2026-10-01)
 
 #### Features
 
+- block: add sliding-menu block (fbb0cd4)
+- navigation: add logo and search display toggles (6e18179)
+- block style cache busting (ff67008)
 - Add support for custom menu item classes (7ce64ff)
 - Add global content blocks to all footer sections (4bf0b87)
 - Add Simple Menu block with server-side rendering (720cb34)
