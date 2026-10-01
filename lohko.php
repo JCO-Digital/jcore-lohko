@@ -48,6 +48,27 @@ add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\set_script_translations' );
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\set_script_translations' );
 
 /**
+ * Override block style versions with a content hash so styles are cache-busted
+ * whenever the CSS changes, without requiring a manual version bump.
+ *
+ * WordPress uses block.json's `version` field for block styles (unlike scripts,
+ * which get their version from the webpack-generated `.asset.php` hash).
+ */
+add_filter(
+	'block_type_metadata',
+	function ( $metadata ) {
+		if ( empty( $metadata['file'] ) || ! str_starts_with( $metadata['name'] ?? '', 'lohko/' ) ) {
+			return $metadata;
+		}
+		$style_file = dirname( $metadata['file'] ) . '/style-index.css';
+		if ( file_exists( $style_file ) ) {
+			$metadata['version'] = md5_file( $style_file );
+		}
+		return $metadata;
+	}
+);
+
+/**
  * Register every block from the generated `blocks-manifest.php`.
  *
  * The manifest is written by `wp-scripts build --blocks-manifest`, and lets
