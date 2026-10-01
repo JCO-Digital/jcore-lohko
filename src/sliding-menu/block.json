@@ -1,0 +1,44 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "lohko/sliding-menu",
+	"version": "0.1.0",
+	"title": "Sliding Menu",
+	"category": "navigation",
+	"icon": "menu-alt3",
+	"description": "Off-canvas drill-down menu where each sub menu slides in as its own panel.",
+	"attributes": {
+		"menuLocation": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"buttonAlign": {
+			"type": "string",
+			"enum": [ "left", "center", "right" ],
+			"default": "left"
+		}
+	},
+	"example": {},
+	"supports": {
+		"html": false,
+		"color": {
+			"background": true,
+			"text": true
+		},
+		"spacing": {
+			"padding": true,
+			"margin": false
+		},
+		"interactivity": true
+	},
+	"textdomain": "lohko",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScriptModule": "file:./view.js"
+}

@@ -1,0 +1,106 @@
+{#
+	Sliding menu: a trigger button and an off-canvas container holding one
+	flat panel per menu level. The view script toggles which panel is active.
+#}
+<div {{ wrapper_attributes }} data-wp-interactive="lohko/sliding-menu" {{ interactivity_context }}>
+	<button
+		type="button"
+		class="wp-block-lohko-sliding-menu__toggle"
+		aria-controls="{{ menu_id }}"
+		aria-expanded="false"
+		data-wp-bind--aria-expanded="context.isOpen"
+		data-wp-on--click="actions.open"
+	>
+		<span class="wp-block-lohko-sliding-menu__toggle-label">{{ button_label }}</span>
+		{% include '@lohko/navigation/partial/hamburger.twig' %}
+	</button>
+
+	<nav
+		id="{{ menu_id }}"
+		class="wp-block-lohko-sliding-menu__container"
+		aria-label="{{ button_label }}"
+		inert
+		data-wp-bind--inert="!context.isOpen"
+		data-wp-class--is-open="context.isOpen"
+		data-wp-class--is-back="state.isBack"
+		data-wp-on--keydown="actions.onKeydown"
+	>
+		<div class="wp-block-lohko-sliding-menu__top-bar">
+			<button
+				type="button"
+				class="wp-block-lohko-sliding-menu__home"
+				aria-label="{{ __('Back to the top menu', 'lohko') }}"
+				data-wp-bind--hidden="state.isRoot"
+				data-wp-on--click="actions.home"
+			>
+				{% include '@lohko/sliding-menu/partial/home.twig' %}
+			</button>
+			<button
+				type="button"
+				class="wp-block-lohko-sliding-menu__close"
+				data-wp-on--click="actions.close"
+			>
+				{{ __('Close', 'lohko') }}
+				{% include '@lohko/sliding-menu/partial/close.twig' %}
+			</button>
+		</div>
+
+		{% for panel in panels %}
+			<div
+				class="wp-block-lohko-sliding-menu__panel"
+				data-panel-id="{{ panel.id }}"
+				data-wp-context="{{ { panelId: panel.id }|json_encode|e('html_attr') }}"
+				data-wp-class--is-active="state.isActive"
+				data-wp-class--is-previous="state.isPrevious"
+				data-wp-bind--inert="state.isPanelInert"
+			>
+				{% if panel.parent %}
+					<div class="wp-block-lohko-sliding-menu__heading">
+						<button
+							type="button"
+							class="wp-block-lohko-sliding-menu__back"
+							data-target="{{ panel.parent }}"
+							aria-label="{{ __('Up one menu level', 'lohko') }}"
+							data-wp-on--click="actions.back"
+						>
+							{% include '@lohko/sliding-menu/partial/chevron.twig' %}
+						</button>
+						{% if panel.link == '#' %}
+							<span class="wp-block-lohko-sliding-menu__heading-text">{{ panel.title }}</span>
+						{% else %}
+							<a class="wp-block-lohko-sliding-menu__heading-text" href="{{ panel.link }}">{{ panel.title }}</a>
+						{% endif %}
+					</div>
+				{% endif %}
+
+				<ul class="wp-block-lohko-sliding-menu__items">
+					{% for item in panel.items %}
+						<li class="{{ item.class }} wp-block-lohko-sliding-menu__item">
+							{% if item.link == '#' %}
+								<span class="wp-block-lohko-sliding-menu__link">{{ item.title }}</span>
+							{% else %}
+								<a
+									class="wp-block-lohko-sliding-menu__link"
+									href="{{ item.link }}"
+									{% if item.target %} target="{{ item.target }}"{% endif %}
+									{% if item.current %} aria-current="page"{% endif %}
+								>{{ item.title }}</a>
+							{% endif %}
+							{% if item.children %}
+								<button
+									type="button"
+									class="wp-block-lohko-sliding-menu__open"
+									data-target="{{ item.id }}"
+									aria-label="{{ __('Open submenu: %s', 'lohko')|format(item.title|striptags) }}"
+									data-wp-on--click="actions.forward"
+								>
+									{% include '@lohko/sliding-menu/partial/chevron.twig' %}
+								</button>
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endfor %}
+	</nav>
+</div>

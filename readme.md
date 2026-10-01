@@ -15,6 +15,7 @@ All blocks are registered under the `lohko/` namespace.
 | `lohko/nav-header` | static | Wrapper that adds jutils scroll and sticky behaviour to a header. |
 | `lohko/navigation` | dynamic | Full navigation with a hamburger, search toggle and submenus. |
 | `lohko/simple-menu` | dynamic | A plain `<ul>` for one registered menu location. |
+| `lohko/sliding-menu` | dynamic | Off-canvas drill-down menu for a registered menu location; each sub menu slides in as its own panel. |
 | `lohko/accordions` | static | Interactivity API accordion container. |
 | `lohko/accordion-item` | static | A single accordion panel, only valid inside `lohko/accordions`. |
 | `lohko/logocloud` | static | Centred, wrapping row of images. |

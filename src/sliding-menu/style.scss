@@ -1,0 +1,227 @@
+// Keep the duration in sync with TRANSITION_MS in view.js.
+$transition: 300ms ease;
+
+.wp-block-lohko-sliding-menu {
+	--lohko-sliding-menu-width: 466px;
+	--lohko-sliding-menu-bar-height: 60px;
+	--lohko-sliding-menu-background: var(--wp--preset--color--base, #fff);
+	--lohko-sliding-menu-text: var(--wp--preset--color--contrast, #1e1e1e);
+	// Derived from the text color so they work on light and dark backgrounds.
+	--lohko-sliding-menu-border: color-mix(in srgb, currentcolor 20%, transparent);
+	--lohko-sliding-menu-highlight: color-mix(in srgb, currentcolor 8%, transparent);
+	display: flex;
+	justify-content: flex-start;
+
+	&.is-button-align-center {
+		justify-content: center;
+	}
+
+	&.is-button-align-right {
+		justify-content: flex-end;
+	}
+
+	@media (max-width: 600px) {
+		--lohko-sliding-menu-width: 100vw;
+	}
+
+	:where(button) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: inherit;
+		font: inherit;
+		cursor: pointer;
+	}
+
+	&__toggle svg {
+		width: 1.25em;
+		height: 1.25em;
+		fill: currentcolor;
+	}
+
+	&__container {
+		position: fixed;
+		z-index: 1000;
+		top: var(--wp-admin--admin-bar--height, 0);
+		right: 0;
+		bottom: 0;
+		width: var(--lohko-sliding-menu-width);
+		overflow: hidden;
+		background: var(--lohko-sliding-menu-background);
+		color: var(--lohko-sliding-menu-text);
+		box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+		transition: transform $transition, visibility 0s linear;
+
+		&:not(.is-open) {
+			visibility: hidden;
+			transform: translateX(100%);
+			transition: transform $transition, visibility 0s linear 300ms;
+		}
+	}
+
+	// The menu follows the colors chosen for the block.
+	&.has-background > &__container {
+		background-color: inherit;
+	}
+
+	&.has-text-color > &__container {
+		color: inherit;
+	}
+
+	&__top-bar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: var(--lohko-sliding-menu-bar-height);
+		padding: 0 1rem;
+		border-bottom: 1px solid var(--lohko-sliding-menu-border);
+
+		button {
+			min-height: 44px;
+			padding: 0 0.5rem;
+		}
+
+		button[hidden] {
+			display: inline-flex;
+			visibility: hidden;
+		}
+	}
+
+	&__close {
+		margin-left: auto;
+	}
+
+	&__panel {
+		position: absolute;
+		top: var(--lohko-sliding-menu-bar-height);
+		right: 0;
+		bottom: 0;
+		left: 0;
+		overflow-y: auto;
+		background-color: inherit;
+		visibility: hidden;
+		transform: translateX(100%);
+		transition: transform $transition, visibility 0s linear 300ms;
+
+		&.is-active {
+			z-index: 2;
+			visibility: visible;
+			transform: none;
+			transition: transform $transition;
+		}
+
+		// Moving forward: the panel we left stays in place underneath.
+		&.is-previous {
+			z-index: 1;
+			visibility: visible;
+			transform: none;
+			transition: none;
+		}
+	}
+
+	// Moving back: the target appears at once and the old panel slides out.
+	&__container.is-back &__panel {
+
+		&.is-active {
+			transition: none;
+		}
+
+		&.is-previous {
+			z-index: 3;
+			transform: translateX(100%);
+			transition: transform $transition;
+		}
+	}
+
+	&__heading {
+		display: flex;
+		align-items: center;
+		background: var(--lohko-sliding-menu-highlight);
+		border-bottom: 1px solid var(--lohko-sliding-menu-border);
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	&__back {
+		align-self: stretch;
+		width: 64px;
+		flex-shrink: 0;
+
+		.wp-block-lohko-sliding-menu__chevron {
+			transform: rotate(180deg);
+		}
+	}
+
+	&__heading-text {
+		flex-grow: 1;
+		padding: 1rem 1rem 1rem 0;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	&__items {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	&__link {
+		display: block;
+		flex-grow: 1;
+		padding: 1rem 1rem 1rem 2rem;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	&__item {
+		display: flex;
+		justify-content: space-between;
+		border-bottom: 1px solid var(--lohko-sliding-menu-border);
+
+		&.current-menu-item {
+			background: var(--lohko-sliding-menu-highlight);
+
+			.wp-block-lohko-sliding-menu__link {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	a.wp-block-lohko-sliding-menu__link:hover,
+	a.wp-block-lohko-sliding-menu__link:focus-visible,
+	&__heading-text:hover,
+	&__heading-text:focus-visible {
+		background: var(--lohko-sliding-menu-highlight);
+		text-decoration: underline;
+	}
+
+	&__open {
+		width: 64px;
+		flex-shrink: 0;
+		border-left: 1px solid var(--lohko-sliding-menu-border);
+	}
+
+	&__back:hover,
+	&__open:hover {
+		background: var(--lohko-sliding-menu-highlight);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+
+		&__container,
+		&__container:not(.is-open),
+		&__panel,
+		&__panel.is-active,
+		&__container.is-back &__panel.is-previous {
+			transition: none;
+		}
+	}
+}
+
+body.lohko-noscroll {
+	overflow: hidden;
+}

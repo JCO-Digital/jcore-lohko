@@ -1,0 +1,9 @@
+// The off-canvas panel can't be previewed well, so only show the button.
+.editor-styles-wrapper .wp-block-lohko-sliding-menu__container {
+	display: none;
+}
+
+// The server rendered preview inside is the element that aligns the button.
+.editor-styles-wrapper .wp-block-lohko-sliding-menu.block-editor-block-list__block {
+	display: block;
+}
