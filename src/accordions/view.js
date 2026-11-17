@@ -28,7 +28,7 @@ const getItem = ( element ) => {
  */
 const getAccordionId = ( element ) => {
 	const item = getItem( element );
-	return item ? item.getAttribute( 'data-accordion-id' ) ?? '' : '';
+	return item ? ( item.getAttribute( 'data-accordion-id' ) ?? '' ) : '';
 };
 
 store( 'lohko/accordions', {

@@ -16,9 +16,9 @@ import { useMenuLocationOptions } from '../shared/use-menu-locations';
  * The header is rendered on the server with Timber, so the editor draws an
  * approximation of it and keeps the inner blocks editable in place.
  *
- * @param {Object}   props               Block props.
- * @param {Object}   props.attributes    Block attributes.
- * @param {Function} props.setAttributes Attribute setter.
+ * @param {Object}                       props               Block props.
+ * @param {Object}                       props.attributes    Block attributes.
+ * @param {(attributes: Object) => void} props.setAttributes Attribute setter.
  *
  * @return {Element} Element to render.
  */
