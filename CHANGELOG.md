@@ -1,6 +1,16 @@
 # Changelog
 
-### 1.0.1 (2026-11-17)
+### 1.0.2 (2026-11-17)
+
+#### Styles
+
+- fix lint errors from the @wordpress/scripts 37 rules (097edf5)
+
+#### Build System
+
+- deps: upgrade @wordpress/scripts to 37 and patch vulnerable packages (a5f087d)
+
+### v1.0.1 (2026-11-17)
 
 #### Bug Fixes
 
