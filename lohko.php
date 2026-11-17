@@ -32,10 +32,21 @@ const BLOCK_DIR = __DIR__ . '/build';
 add_filter(
 	'timber/locations',
 	function ( $paths ) {
-		$paths['lohko'] = array(
-			__DIR__ . '/src',
-			__DIR__ . '/twig',
+		// Twig's loader throws on a missing directory, which fatals every
+		// front-end page, so only register the folders that exist.
+		$locations = array_values(
+			array_filter(
+				array(
+					__DIR__ . '/src',
+					__DIR__ . '/twig',
+				),
+				'is_dir'
+			)
 		);
+
+		if ( $locations ) {
+			$paths['lohko'] = $locations;
+		}
 
 		return $paths;
 	}
