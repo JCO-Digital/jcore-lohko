@@ -1,6 +1,16 @@
 # Changelog
 
-## 1.0.0 (2026-10-01)
+### 1.0.1 (2026-11-17)
+
+#### Bug Fixes
+
+- timber: skip template folders that don't exist (e0b2a64)
+
+#### Build System
+
+- deps: sync pnpm lockfile with package.json (814379f)
+
+## v1.0.0 (2026-10-01)
 
 #### Features
 
