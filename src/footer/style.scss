@@ -34,6 +34,12 @@
 		grid-area: copyright;
 	}
 
+	/* The block's logo or the site logo, linked to the front page. */
+	.lohko-footer__logo {
+		display: block;
+		width: fit-content;
+	}
+
 	.menu,
 	.menu .sub-menu {
 		list-style: none;
