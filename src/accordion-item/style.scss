@@ -1,69 +1,82 @@
 /**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
+ * Accordion item: a row with the title, the same look as the theme's
+ * details block. Title in the Paragraph Bold style, a chevron on the right
+ * (down when closed, up when open), a faint line between the items. Colours
+ * come from the text colour and the Ilme presets only, so the block follows
+ * the theme and the block's own colour settings.
  */
-
 .wp-block-lohko-accordion-item {
+	border-bottom: 1px solid color-mix(in srgb, currentcolor 15%, transparent);
+
+	.accordion-item__header-wrapper {
+		margin: 0;
+		font: inherit;
+	}
 
 	.accordion-item__header {
 		display: flex;
-		justify-content: space-between;
+		gap: 24px;
 		align-items: center;
+		justify-content: space-between;
 		width: 100%;
+		padding: 24px 0;
+		border: 0;
+		background: none;
+		color: inherit;
+		font-family: inherit;
+		font-size: var(--wp--preset--font-size--paragraph);
+		font-weight: 600;
+		line-height: 24px;
+		letter-spacing: 0;
+		text-align: left;
+		text-decoration: none;
+		cursor: pointer;
 
-		.accordion-item__toggle {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: 2rem;
-			height: 2rem;
-			border-radius: 50%;
-			border: 0;
-			background-color: #000;
-			color: #fff;
-			cursor: pointer;
+		// No underline on hover by default, also when a theme underlines
+		// buttons or links. A theme can add one on .accordion-item__title.
+		&:hover,
+		&:hover .accordion-item__title {
+			text-decoration: none;
 		}
 
-		.accordion-item__toggle-icon {
-			position: relative;
-			display: block;
-			width: 0.75rem;
-			height: 0.75rem;
-		}
-
-		.accordion-item__toggle-icon::before,
-		.accordion-item__toggle-icon::after {
-			position: absolute;
-			top: 50%;
-			left: 0;
-			width: 100%;
-			height: 2px;
-			background-color: currentcolor;
-			content: "";
-			transform: translateY(-50%);
-			transition: transform 0.2s ease;
-		}
-
-		.accordion-item__toggle-icon::after {
-			transform: translateY(-50%) rotate(90deg);
-		}
-
-		&.active .accordion-item__toggle-icon::after {
-			transform: translateY(-50%) rotate(0deg);
+		&:focus-visible {
+			outline: 2px solid var(--wp--preset--color--brand, currentcolor);
+			outline-offset: 3px;
 		}
 	}
 
-	.accordion-item__content {
-		overflow: hidden;
+	.accordion-item__toggle {
+		flex: none;
+		width: 49px;
+		height: 49px;
+		background: currentcolor;
+		mask: url(./chevron.svg) center / contain no-repeat;
+		transform: rotate(90deg);
+		transition: transform 0.3s ease;
+	}
+
+	.accordion-item__toggle-icon {
 		display: none;
+	}
+
+	.accordion-item__content {
+		display: none;
+		overflow: hidden;
+		padding: 8px 0 34px;
+
+		> :first-child {
+			margin-top: 0;
+		}
+
+		> :last-child {
+			margin-bottom: 0;
+		}
 	}
 
 	&.active {
 
-		.accordion-item__toggle-icon::before {
-			content: "\f068";
+		.accordion-item__toggle {
+			transform: rotate(-90deg);
 		}
 
 		.accordion-item__content {

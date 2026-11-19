@@ -20,6 +20,7 @@ namespace Jcore\Lohko;
 defined( 'ABSPATH' ) || exit;
 
 require_once __DIR__ . '/includes/timber.php';
+require_once __DIR__ . '/includes/faq-schema.php';
 
 const BLOCK_DIR = __DIR__ . '/build';
 
