@@ -4,8 +4,10 @@ $transition: 300ms ease;
 .wp-block-lohko-sliding-menu {
 	--lohko-sliding-menu-width: 466px;
 	--lohko-sliding-menu-bar-height: 60px;
-	--lohko-sliding-menu-background: var(--wp--preset--color--base, #fff);
-	--lohko-sliding-menu-text: var(--wp--preset--color--contrast, #1e1e1e);
+	// The panel in the Ilme presets (white, dark). Outside Ilme, the
+	// browser's own page colours.
+	--lohko-sliding-menu-background: var(--wp--preset--color--white, canvas);
+	--lohko-sliding-menu-text: var(--wp--preset--color--dark, canvastext);
 	// Derived from the text color so they work on light and dark backgrounds.
 	--lohko-sliding-menu-border: color-mix(in srgb, currentcolor 20%, transparent);
 	--lohko-sliding-menu-highlight: color-mix(in srgb, currentcolor 8%, transparent);
@@ -69,6 +71,13 @@ $transition: 300ms ease;
 	}
 
 	&.has-text-color > &__container {
+		color: inherit;
+	}
+
+	// Links and buttons in the menu use the menu's text color, also when the
+	// block sits in something with its own link color (e.g. a header with
+	// white links, .wp-elements-* a), which would otherwise win.
+	& &__container :is(a, button) {
 		color: inherit;
 	}
 
