@@ -6,7 +6,7 @@
 	"title": "Simple Menu",
 	"category": "navigation",
 	"icon": "menu",
-	"description": "Basic navigation for JCORE.",
+	"description": "A plain list of links from a menu location, vertical or horizontal, with optional sub menus.",
 	"attributes": {
 		"menuLocation": {
 			"type": "string",

@@ -6,7 +6,7 @@
   "title": "Logo Cloud",
   "category": "widgets",
   "icon": "text-page",
-  "description": "Block for logos",
+  "description": "A row of logos, made of image blocks.",
   "example": {},
   "supports": {
     "html": false,

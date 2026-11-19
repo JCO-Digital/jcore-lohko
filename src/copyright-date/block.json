@@ -6,7 +6,7 @@
 	"title": "Copyright Date",
 	"category": "widgets",
 	"icon": "text-page",
-	"description": "A block that shows copyright date and Company name, either as a year interval or current year.",
+	"description": "Copyright line with the company name and the year, or a range from a starting year to the current year.",
 	"attributes": {
 		"showStartingYear": {
 			"type": "boolean",
