@@ -3,6 +3,17 @@
 	{% for area in ['left', 'middle', 'right', 'bottom'] %}
 		{% set area_menu = menu[ 'footer_' ~ area ] %}
 		<section class="lohko-footer__section lohko-footer__{{ area }}">
+			{% if area == 'left' and (logo_svg or logo_url or site_logo) %}
+				<a class="lohko-footer__logo" href="{{ logo_link|esc_url }}"{% if logo_svg %} aria-label="{{ logo_label|esc_attr }}"{% endif %}>
+					{% if logo_svg %}
+						{{ logo_svg }}
+					{% elseif logo_url %}
+						<img src="{{ logo_url|esc_url }}" alt="{{ logoAlt|esc_attr }}">
+					{% else %}
+						{{ site_logo }}
+					{% endif %}
+				</a>
+			{% endif %}
 			{{ jcore_global_content('footer-' ~ area) }}
 			{% if area_menu %}
 				{% include '@lohko/footer/partial/menu.twig' with {

@@ -1,46 +1,65 @@
 /**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
+ * Editor only: the title and content areas of each item are outlined and
+ * labelled, in the theme's brand colour (title) and the text colour
+ * (content). Scoped under the editor wrapper and the accordions block so it
+ * beats the front end's padding (including the Compact style's).
  */
 
-.wp-block-lohko-accordion-item {
+.editor-styles-wrapper .wp-block-lohko-accordions .wp-block-lohko-accordion-item {
+	padding-bottom: 1rem;
 
 	.accordion-item__header {
-		border: 2px dashed var(--wp--preset--color--warning);
-		padding: 2rem 1rem 1rem;
 		position: relative;
 		width: auto;
+		padding: 2.25rem 1rem 1rem;
+		border: 1px dashed color-mix(in srgb, var(--wp--preset--color--brand, currentcolor) 35%, transparent);
+		border-radius: 4px;
 
 		&::before {
 			content: "Accordion Header";
-			display: block;
-			font-size: 1rem;
-			font-weight: 600;
-			color: var(--wp--preset--color--white);
-			background-color: var(--wp--preset--color--warning);
 			position: absolute;
 			top: 0;
 			left: 0;
+			display: block;
+			padding: 2px 8px;
+			border-radius: 4px 0 4px 0;
+			background-color: color-mix(in srgb, var(--wp--preset--color--brand, currentcolor) 10%, transparent);
+			color: var(--wp--preset--color--brand, currentcolor);
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 18px;
 		}
 	}
 
+	/* The title is an h3 in the editor: the row's font, not the H3 style. */
+	.accordion-item__title {
+		flex: 1;
+		margin: 0;
+		font: inherit;
+		letter-spacing: inherit;
+	}
+
 	.accordion-item__content {
-		border: 2px dashed var(--wp--preset--color--success);
-		padding: 2rem 1rem 1rem;
 		position: relative;
 		display: block !important;
+		margin-top: 8px;
+		padding: 2.25rem 1rem 1rem;
+		border: 1px dashed color-mix(in srgb, currentcolor 30%, transparent);
+		border-radius: 4px;
 
 		&::before {
 			content: "Accordion Content";
-			display: block;
-			font-size: 1rem;
-			font-weight: 600;
-			color: var(--wp--preset--color--white);
-			background-color: var(--wp--preset--color--success);
 			position: absolute;
 			top: 0;
 			left: 0;
+			display: block;
+			padding: 2px 8px;
+			border-radius: 4px 0 4px 0;
+			background-color: color-mix(in srgb, currentcolor 8%, transparent);
+			color: inherit;
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 18px;
 		}
 	}
 }

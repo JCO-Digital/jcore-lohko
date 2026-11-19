@@ -6,7 +6,7 @@
 	"title": "Navigation",
 	"category": "navigation",
 	"icon": "menu",
-	"description": "Basic navigation for JCORE.",
+	"description": "Main navigation from a menu location, with optional logo, search and sub menus.",
 	"attributes": {
 		"menuLocation": {
 			"type": "string",

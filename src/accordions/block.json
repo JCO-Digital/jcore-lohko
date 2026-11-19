@@ -6,8 +6,17 @@
 	"title": "Accordions",
 	"category": "widgets",
 	"icon": "text-page",
-	"description": "Accordions",
-	"attributes": {},
+	"description": "Accordion items; one open at a time. Optionally the first item is open when the page loads. The Compact style has a smaller title and a thin chevron.",
+	"attributes": {
+		"firstOpen": {
+			"type": "boolean",
+			"default": false
+		},
+		"addStructuredData": {
+			"type": "boolean",
+			"default": false
+		}
+	},
 	"example": {},
 	"supports": {
 		"html": false,
@@ -22,5 +31,16 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
-	"viewScriptModule": "file:./view.js"
+	"viewScriptModule": "file:./view.js",
+	"styles": [
+		{
+			"name": "default",
+			"label": "Default",
+			"isDefault": true
+		},
+		{
+			"name": "compact",
+			"label": "Compact"
+		}
+	]
 }

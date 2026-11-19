@@ -14,11 +14,13 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
  * @return {Element} Element to render.
  */
 export default function save( { attributes } ) {
-	const { scroll, sticky } = attributes;
+	const { scroll, sticky, overlay } = attributes;
 
 	return (
 		<header
-			{ ...useBlockProps.save() }
+			{ ...useBlockProps.save( {
+				className: overlay ? 'is-overlay' : undefined,
+			} ) }
 			data-jscroll={ scroll ? 'true' : undefined }
 			data-jsticky={ sticky ? 'true' : undefined }
 		>

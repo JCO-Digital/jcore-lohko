@@ -6,7 +6,7 @@
 	"title": "Accordion Item",
 	"category": "widgets",
 	"icon": "text-page",
-	"description": "Accordion Item",
+	"description": "One accordion row: a title that opens and closes the content below it.",
 	"parent": ["lohko/accordions"],
 	"attributes": {
 		"title": {

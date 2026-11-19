@@ -1,4 +1,33 @@
 .wp-block-lohko-accordions {
 	display: flex;
 	flex-direction: column;
+	margin-block: 0 var(--wp--custom--spacing-sizes--medium, 2rem);
+}
+
+/*
+ * Compact: lighter rows, for short lists. A line above the
+ * first item and below each, a semibold 16px title and a thin chevron
+ * (down when closed, up when open).
+ */
+.wp-block-lohko-accordions.is-style-compact {
+	border-top: 1px solid color-mix(in srgb, currentcolor 15%, transparent);
+
+	.accordion-item__header {
+		padding: 25px 0;
+		font-size: 16px;
+		font-weight: 600;
+		line-height: 24px;
+	}
+
+	.accordion-item__toggle {
+		width: 10px;
+		height: 18.25px;
+		margin-right: 6px;
+		background: currentcolor;
+		mask: url(./chevron-compact.svg) center / contain no-repeat;
+	}
+
+	.accordion-item__content {
+		padding: 0 0 24px;
+	}
 }

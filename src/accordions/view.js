@@ -3,6 +3,28 @@ import { getContext, getElement, store } from '@wordpress/interactivity';
 const ACCORDION_HASH_PREFIX = 'accordion-';
 
 /**
+ * Keep an element where it is on the screen while the page above it changes
+ * (e.g. an item above closes). Measures it now, and after the next paint
+ * scrolls by however much it moved. No smooth scrolling: nothing jumps.
+ *
+ * @param {HTMLElement} element The element to keep in place.
+ */
+const keepInView = ( element ) => {
+	if ( ! element ) {
+		return;
+	}
+	const before = element.getBoundingClientRect().top;
+	window.requestAnimationFrame( () =>
+		window.requestAnimationFrame( () => {
+			const moved = element.getBoundingClientRect().top - before;
+			if ( Math.abs( moved ) > 1 ) {
+				window.scrollBy( { top: moved, behavior: 'instant' } );
+			}
+		} )
+	);
+};
+
+/**
  * Find the accordion item element an event target belongs to.
  *
  * @param {HTMLElement} element Element inside an accordion item.
@@ -34,26 +56,35 @@ const getAccordionId = ( element ) => {
 store( 'lohko/accordions', {
 	state: {
 		get isActive() {
-			const context = getContext();
+			// Read the context first, so the directive subscribes to it even
+			// when the element ref isn't available yet on the first render.
+			const { currentAccordion } = getContext();
 			const { ref } = getElement();
 			const id = getAccordionId( ref );
-			return id !== '' && context.currentAccordion === id;
+			return id !== '' && currentAccordion === id;
 		},
 	},
 	actions: {
 		parseUrl() {
+			const context = getContext();
 			const hash = window.location.hash.slice( 1 );
-			if ( ! hash.startsWith( ACCORDION_HASH_PREFIX ) ) {
-				return;
-			}
 
 			// Keep the whole remainder: ids may contain hyphens.
-			const id = hash.slice( ACCORDION_HASH_PREFIX.length );
-			if ( ! id ) {
+			const id = hash.startsWith( ACCORDION_HASH_PREFIX )
+				? hash.slice( ACCORDION_HASH_PREFIX.length )
+				: '';
+			if ( id ) {
+				context.currentAccordion = id;
 				return;
 			}
 
-			getContext().currentAccordion = id;
+			// The block's "First item open" option.
+			if ( context.openFirst ) {
+				const { ref } = getElement();
+				const first = ref.querySelector( '[data-accordion-id]' );
+				context.currentAccordion =
+					first?.getAttribute( 'data-accordion-id' ) ?? '';
+			}
 		},
 		openAccordion() {
 			const { ref } = getElement();
@@ -71,20 +102,22 @@ store( 'lohko/accordions', {
 
 			const context = getContext();
 
+			// The clicked title stays where it is, even when an item above
+			// it closes at the same time.
+			keepInView( ref );
+
 			const wasActive = context.currentAccordion === id;
 			context.currentAccordion = wasActive ? '' : id;
 
-			if ( wasActive ) {
-				window.history.pushState(
-					null,
-					'',
-					window.location.pathname + window.location.search
-				);
-				return;
-			}
-
-			item.scrollIntoView( { behavior: 'smooth' } );
-			window.history.pushState( null, '', `#${ item.id }` );
+			// The address shows the open item, for sharing; replaced, not
+			// pushed, so opening items doesn't fill the back button's history.
+			window.history.replaceState(
+				null,
+				'',
+				wasActive
+					? window.location.pathname + window.location.search
+					: `#${ item.id }`
+			);
 		},
 	},
 } );
