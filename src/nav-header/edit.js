@@ -20,7 +20,7 @@ import './editor.scss';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { scroll, sticky } = attributes;
+	const { scroll, sticky, overlay } = attributes;
 
 	return (
 		<>
@@ -47,11 +47,25 @@ export default function Edit( { attributes, setAttributes } ) {
 							setAttributes( { sticky: newValue } )
 						}
 					/>
+					<ToggleControl
+						__nextHasNoMarginBottom
+						label={ __( 'Overlay content', 'lohko' ) }
+						help={ __(
+							'Place the header on top of the content below it, for example a hero.',
+							'lohko'
+						) }
+						checked={ overlay }
+						onChange={ ( newValue ) =>
+							setAttributes( { overlay: newValue } )
+						}
+					/>
 				</PanelBody>
 			</InspectorControls>
 
 			<header
-				{ ...useBlockProps() }
+				{ ...useBlockProps( {
+					className: overlay ? 'is-overlay' : undefined,
+				} ) }
 				data-jscroll={ scroll }
 				data-jsticky={ sticky }
 			>

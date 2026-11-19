@@ -15,6 +15,10 @@
     "sticky": {
       "type": "boolean",
       "default": false
+    },
+    "overlay": {
+      "type": "boolean",
+      "default": false
     }
   },
   "example": {},

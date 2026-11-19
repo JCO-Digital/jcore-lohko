@@ -9,6 +9,24 @@
 		z-index: 100;
 	}
 
+	/* Overlay: taken out of the flow so the content below starts under it. */
+	&.is-overlay {
+		position: absolute;
+		// The admin bar already moves the page down (html margin-top), and the
+		// header moves with it, so no admin bar offset here.
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100;
+	}
+
+	&.is-overlay[data-jsticky],
+	&.is-overlay.sticky {
+		position: fixed;
+		// A fixed header sits on the viewport, below the admin bar.
+		top: var(--wp-admin--admin-bar--height, 0);
+	}
+
 	&.scrollActive {
 		transition: margin-top 300ms ease;
 
@@ -21,4 +39,15 @@
 			margin-top: calc(var(--jutils-height, 80px) * -1);
 		}
 	}
+}
+
+/*
+ * An overlay header takes no room, so the block after it starts at the top:
+ * no top margin (Ilme, for example, gives every Group block one). Both when
+ * the header is in a template part and when it is placed straight in the
+ * template.
+ */
+.wp-site-blocks > .wp-block-lohko-nav-header.is-overlay + *,
+.wp-site-blocks > :has(> .wp-block-lohko-nav-header.is-overlay) + * {
+	margin-block-start: 0;
 }
