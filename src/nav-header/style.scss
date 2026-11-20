@@ -51,3 +51,13 @@
 .wp-site-blocks > :has(> .wp-block-lohko-nav-header.is-overlay) + * {
 	margin-block-start: 0;
 }
+
+/*
+ * position: sticky only works inside the parent, and a template part wraps
+ * the header in a div exactly as tall as the header, so a sticky header in a
+ * template part never sticks. Let the wrapper's box drop out (display:
+ * contents), so the header sticks against the whole page.
+ */
+.wp-site-blocks > :has(> .wp-block-lohko-nav-header:is([data-jsticky], .sticky):not(.is-overlay)) {
+	display: contents;
+}
