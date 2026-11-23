@@ -6,7 +6,7 @@
   "title": "Rive Animation",
   "category": "widgets",
   "icon": "superhero",
-  "description": "Insert Rive Animations",
+  "description": "A Rive animation (.riv file), optionally run by a state machine.",
   "attributes": {
     "riveFile": {
       "type": "number"

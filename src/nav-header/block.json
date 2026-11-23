@@ -6,13 +6,17 @@
   "title": "Navigation Header",
   "category": "navigation",
   "icon": "block-default",
-  "description": "A wrapper block for navigation.",
+  "description": "Wrapper for the site header, optionally sticky, hidden on scroll or laid over the content below it.",
   "attributes": {
     "scroll": {
       "type": "boolean",
       "default": false
     },
     "sticky": {
+      "type": "boolean",
+      "default": false
+    },
+    "overlay": {
       "type": "boolean",
       "default": false
     }

@@ -16,8 +16,14 @@ import metadata from './block.json';
  * @return {Element} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-	const { copyrightShow, copyrightText, copyrightYear, copyrightToCurrent } =
-		attributes;
+	const {
+		copyrightShow,
+		copyrightText,
+		copyrightYear,
+		copyrightToCurrent,
+		logo,
+		logoAlt,
+	} = attributes;
 	return (
 		<>
 			<InspectorControls>
@@ -78,6 +84,30 @@ export default function Edit( { attributes, setAttributes } ) {
 							/>
 						</>
 					) }
+				</PanelBody>
+				<PanelBody title={ __( 'Logo', 'lohko' ) }>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label={ __( 'Logo', 'lohko' ) }
+						help={ __(
+							'Path to an image in the theme, e.g. assets/images/footer-logo.svg, or a full URL. Shown at the top of the left area, linked to the front page. Leave empty to show the site logo.',
+							'lohko'
+						) }
+						value={ logo }
+						onChange={ ( newValue ) =>
+							setAttributes( { logo: newValue } )
+						}
+					/>
+					<TextControl
+						__next40pxDefaultSize
+						__nextHasNoMarginBottom
+						label={ __( 'Logo alt text', 'lohko' ) }
+						value={ logoAlt }
+						onChange={ ( newValue ) =>
+							setAttributes( { logoAlt: newValue } )
+						}
+					/>
 				</PanelBody>
 			</InspectorControls>
 

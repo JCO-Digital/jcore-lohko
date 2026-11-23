@@ -80,6 +80,47 @@
 		height: auto;
 	}
 
+	// The hamburger's lines (partial/hamburger.twig) are drawn through the
+	// middle and moved apart; open, the outer two cross into an X and the
+	// middle one fades out. The closed positions are also in the SVG, so the
+	// icon is right where this CSS isn't loaded (the sliding menu).
+	.hamburger-line {
+		transform-origin: 224px 256px;
+		transition:
+			transform 0.25s ease,
+			opacity 0.25s ease;
+	}
+
+	.hamburger-line-top {
+		transform: translateY(-160px);
+	}
+
+	.hamburger-line-bottom {
+		transform: translateY(160px);
+	}
+
+	.hamburger[aria-expanded="true"] {
+		// Lengthened a little, so the X is as tall as the three lines.
+		.hamburger-line-top {
+			transform: rotate(45deg) scaleX(1.12);
+		}
+
+		.hamburger-line-middle {
+			opacity: 0;
+		}
+
+		.hamburger-line-bottom {
+			transform: rotate(-45deg) scaleX(1.12);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+
+		.hamburger-line {
+			transition: none;
+		}
+	}
+
 	.searchbar-container {
 		display: none;
 		position: absolute;

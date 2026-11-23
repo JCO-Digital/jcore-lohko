@@ -6,7 +6,7 @@
 	"title": "Footer",
 	"category": "widgets",
 	"icon": "text-page",
-	"description": "Standard footer that can be used as a base.",
+	"description": "Site footer with left, middle, right and bottom areas for menus and global content, an optional logo and a copyright line.",
 	"attributes": {
 		"copyrightShow": {
 			"type": "boolean",
@@ -23,6 +23,14 @@
 		"copyrightToCurrent": {
 			"type": "boolean",
 			"default": false
+		},
+		"logo": {
+			"type": "string",
+			"default": ""
+		},
+		"logoAlt": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"example": {},

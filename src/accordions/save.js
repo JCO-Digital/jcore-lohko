@@ -13,12 +13,19 @@ import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  *
+ * @param {Object} props            Block props.
+ * @param {Object} props.attributes Block attributes.
+ *
  * @return {Element} Element to render.
  */
-export default function save() {
+export default function save( { attributes } ) {
 	const context = {
 		currentAccordion: '',
 	};
+	// Only when chosen, so accordions saved before the option stay valid.
+	if ( attributes.firstOpen ) {
+		context.openFirst = true;
+	}
 	return (
 		<div
 			{ ...useBlockProps.save( {
