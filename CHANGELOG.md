@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.1.1 (2026-11-23)
+
+#### Bug Fixes
+
+- navigation: mobile menu covers the screen below the bar (2995ee0)
+
 ## 1.1.0 (2026-11-23)
 
 #### Features
