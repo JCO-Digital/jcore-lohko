@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.1.0 (2026-11-23)
+
+#### Features
+
+- navigation: thinner hamburger that turns into an X when open (53ca8b1)
+- footer: logo setting, falling back to the site logo (0d0b0fc)
+- nav-header: overlay option (2ff7603)
+- accordions: first item open, FAQ schema and compact style (2f76640)
+
+#### Bug Fixes
+
+- sliding-menu: Ilme colours, links keep the menu's text colour (68e645f)
+
+#### Documentation
+
+- blocks: describe what each block does (8d80af5)
+
 ### 1.0.2 (2026-11-17)
 
 #### Styles
@@ -146,4 +163,3 @@
 
 - Add scrolling and sticky controls to nav-header block (0aa29bf)
 - Create readme.md (03f5cb4)
-
