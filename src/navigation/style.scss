@@ -182,20 +182,26 @@
 	/* Mobile styles */
 	@media (max-width: 979px) {
 
+		// The open menu covers the screen below the bar, edge to edge: the
+		// navigation sits inside the header's side padding, so reach out of it
+		// with 50vw. The theme sets the background colour.
 		.menu-level-0 {
 			position: absolute;
 			overflow: hidden;
 			height: 0;
 			transition: height 100ms ease;
-			left: 0;
-			right: 0;
+			left: calc(50% - 50vw);
+			right: calc(50% - 50vw);
 			top: var(--jutils-height, var(--jcore-menu-height));
 			flex-direction: column;
-			width: 100%;
 			z-index: 90;
+			// The same distance as it reaches out (percentages here are of the
+			// navigation's width), so the items line up with the logo.
+			padding-inline: calc(50vw - 50%);
 
 			&.mobile-open {
-				height: calc(100vh - var(--jutils-height, 80px));
+				height: calc(100dvh - var(--jutils-height, var(--jcore-menu-height)) - var(--wp-admin--admin-bar--height, 0px));
+				padding-block: 1rem;
 				overflow-y: auto;
 			}
 		}
