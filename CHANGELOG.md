@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.1.2 (2026-11-23)
+
+#### Bug Fixes
+
+- nav-header: no jcore-utils spacer above a sticky header, and make it stick in a template part (e30e4ad)
+
 ### 1.1.1 (2026-11-23)
 
 #### Bug Fixes
