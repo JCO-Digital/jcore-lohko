@@ -1,5 +1,12 @@
 # Changelog
 
+### 1.1.3 (2026-11-25)
+
+#### Bug Fixes
+
+- navigation: mobile submenus, 992px breakpoint, Escape, logo caps (8b5de10)
+- footer: cap the logo size (f090330)
+
 ### 1.1.2 (2026-11-23)
 
 #### Bug Fixes
