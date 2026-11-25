@@ -38,6 +38,17 @@
 	.lohko-footer__logo {
 		display: block;
 		width: fit-content;
+
+		// 1.5 times the header logo's caps; a theme can change them.
+		img,
+		svg {
+			display: block;
+			max-height: var(--lohko-footer-logo-max-height, calc(1.5 * var(--jcore-logo-max-height, 60px)));
+			max-width: var(--lohko-footer-logo-max-width, calc(1.5 * var(--jcore-logo-max-width, 250px)));
+			width: auto;
+			height: auto;
+			object-fit: contain;
+		}
 	}
 
 	.menu,
