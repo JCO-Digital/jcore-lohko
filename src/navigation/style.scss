@@ -144,18 +144,22 @@
 		}
 	}
 
-	/* Desktop styles */
-	@media (min-width: 980px) {
+	/* Desktop styles (992px, the lg breakpoint, the same as Ilme's) */
+	@media (min-width: 992px) {
 
 		.hamburger {
 			display: none;
 		}
 
+		// Too many items wrap onto a second row rather than run off the
+		// screen. Keep the main menu short: the wrap is a fallback.
 		.menu-level-0 {
 			flex-direction: row;
+			flex-wrap: wrap;
 			align-items: center;
-			height: var(--jcore-menu-height);
-			gap: 1rem;
+			align-content: center;
+			min-height: var(--jcore-menu-height);
+			gap: 0.25rem 1rem;
 
 			> .menu-item-level-0 {
 				position: relative;
@@ -180,7 +184,12 @@
 	}
 
 	/* Mobile styles */
-	@media (max-width: 979px) {
+	@media (max-width: 991.98px) {
+
+		// The search button sits next to the hamburger, not in the middle.
+		.toggle-search {
+			margin-inline-start: auto;
+		}
 
 		// The open menu covers the screen below the bar, edge to edge: the
 		// navigation sits inside the header's side padding, so reach out of it
@@ -206,17 +215,35 @@
 			}
 		}
 
+		// Each item at least 44px tall, an easy tap. A parent item: the
+		// link, its submenu button on the right, and the submenu below them.
+		// The link goes to the page, the button opens the submenu.
+		.menu-item-level-0 {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			min-height: 44px;
+
+			> .menu-link {
+				flex: 1;
+			}
+
+			> .toggle {
+				justify-content: center;
+				min-width: 44px;
+				min-height: 44px;
+			}
+		}
+
 		.menu-level-1 {
 			position: static;
+			flex-basis: 100%;
 			flex-direction: column;
+			padding-inline-start: 1rem;
 
 			&:not(.open) {
 				display: none;
 			}
-		}
-
-		.toggle {
-			display: none;
 		}
 	}
 }

@@ -8,6 +8,21 @@
 		flex-wrap: wrap;
 	}
 
+	// The same caps as the navigation's logo; a theme can change them.
+	.lohko-header__brand {
+
+		img,
+		svg,
+		.custom-logo {
+			display: block;
+			max-height: var(--jcore-logo-max-height, 60px);
+			max-width: var(--jcore-logo-max-width, 250px);
+			width: auto;
+			height: auto;
+			object-fit: contain;
+		}
+	}
+
 	.lohko-header__menu,
 	.lohko-header__menu .sub-menu {
 		display: flex;
